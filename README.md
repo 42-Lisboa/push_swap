@@ -1,0 +1,16 @@
+# push_swap 🔄
+
+> **🚧 Work In Progress 🚧**
+
+A 42 school algorithmic project focused on sorting data on a stack with a limited set of instructions, using the absolute minimum number of moves. 
+
+## Current Status
+- [x] Input parsing and error validation, also for flags
+- [ ] Data structure implementation
+- [ ] Stack operations implementation (`sa`, `pa`, `ra`, `rra`, etc.)
+- [ ] Small sort logic (3 to 5 numbers)
+- [ ] Large sort algorithm implementation (optimizing for 100 and 500 numbers)
+- [ ] Move reduction and efficiency tweaking
+
+---
+*Jonathan Alves & Joao Astolfi — Programming Students @ 42*
