@@ -6,7 +6,7 @@
 /*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/22 17:32:17 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/05/22 18:34:03 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	has_valid_flag(char **argv)
 	{
 		while (flags[++i])
 		{
-			if (ft_strlen(&argv[1][2] != ft_strlen(flags[i])))
+			if (ft_strlen(&argv[1][2]) != ft_strlen(flags[i]))
 				continue ;
 			if (ft_strncmp(&argv[1][2], flags[i], ft_strlen(&argv[1][2])) == 0)
 				return (i);
