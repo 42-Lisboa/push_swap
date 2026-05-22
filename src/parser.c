@@ -6,7 +6,7 @@
 /*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/22 17:08:59 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/05/22 17:32:17 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	is_valid_argc(int argc, char **argv)
 		end(ERR_ARG); // mandar para o push_swap.
 }
 // 17. Validation of the minimun number of argv;
-// 19. Validation of the minimum argv when there's a flag
+// 19. Validation of the minimum argv when there's a flag;
 
 static void	fill_data(t_array *data, int argc, char **argv, int i);
 
