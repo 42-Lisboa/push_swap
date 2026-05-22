@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/22 18:34:03 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/05/22 19:12:40 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+
+int is_flag(char *string)
+{
+	return (string[0] == '-' && string[1] == '-');
+}
 
 void	is_valid_argc(int argc, char **argv)
 {
@@ -115,7 +121,7 @@ int	has_valid_flag(char **argv)
 	flags[3] = "adaptive";
 	flags[4] = NULL;
 	i = -1;
-	if (argv[1][0] == '-' && argv[1][1] == '-')
+	if (is_flag(argv[1]))
 	{
 		while (flags[++i])
 		{
@@ -127,4 +133,23 @@ int	has_valid_flag(char **argv)
 		end(ERR_INVALID_FLAG);
 	}
 	return (-1);
+}
+
+
+int is_target(int argc, char **argv, char *target)
+{
+	int index;
+	
+	index = 0;
+	while (++index < argc)
+	{
+		if (ft_strncmp(argv[index], target, ft_strlen(target) + 1) == 0)
+			return (1);
+	}
+	return (0);
+}
+
+int main(int argc, char **argv)
+{
+	printf("%d\n", has_benchmark(argc, argv, "--bench"));
 }
