@@ -12,5 +12,10 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [ ] Large sort algorithm implementation (optimizing for 100 and 500 numbers)
 - [ ] Move reduction and efficiency tweaking
 
+## Last Changes
+- [x] Multi-flag parsing and `t_flags` state implementation *by jalves*
+- [x] Strict validation against duplicate or conflicting flags *by jalves*
+- [x] Modularized parse_flags logic to respect the 25-line maximum rule *by jalves*
+
 ---
 *Jonathan Alves & Joao Astolfi — Programming Students @ 42*

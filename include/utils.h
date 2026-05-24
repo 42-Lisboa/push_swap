@@ -12,12 +12,19 @@ typedef struct  s_array
     int         *values;
     int         size;
     int         *head;
-}               t_array;
+}   t_array;
+
+typedef struct	s_flags
+{
+	int			strategy;
+    int			bench;
+}	t_flags;
 
 void	is_valid_argc(int argc, char **argv);
 t_array	*is_valid_number(int argc, char **argv);
 void	has_duplicates(t_array *data);
-int		has_valid_flag(char **argv);
+int		parse_all_flags(int argc, char **argv, t_flags *flag);
+int		get_strategy_idx(char *argv);
 void	end(int	error);
 
 #endif

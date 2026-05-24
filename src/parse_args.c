@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/22 19:12:40 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/05/24 04:08:52 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-int is_flag(char *string)
-{
-	return (string[0] == '-' && string[1] == '-');
-}
-
 void	is_valid_argc(int argc, char **argv)
 {
 	if (argc == 1)
 		exit(0);
-	if (has_valid_flag(argv) >= 0 && argc < 3)
-		end(ERR_ARG); // mandar para o push_swap.
+	/* if (parse_all_flags(argv) == argc)
+		end(ERR_ARG); */ // mandar para o push_swap com os inputs corretos
 }
-// 17. Validation of the minimun number of argv;
+// 17. Validation of the minimum number of argv;
 // 19. Validation of the minimum argv when there's a flag;
 
 static void	fill_data(t_array *data, int argc, char **argv, int i);
@@ -36,9 +30,9 @@ t_array	*is_valid_number(int argc, char **argv)
 	t_array	*data;
 
 	i = 1;
-	if (has_valid_flag(argv) >= 0)
-		i++;
-	data = malloc(sizeof(t_array));
+	/* if (has_valid_flag(argv) >= 0)	// Nao precisamos mais fazer essa verificacao
+		i++; */						// pois parse_flags retorna proximo index depois da ultima flag
+	data = malloc(sizeof(t_array));	// basta entregarmos endereco do **argv na posicao i
 	if (!data)
 		return (NULL);
 	data->values = malloc(sizeof(int) * (argc - i));
@@ -109,47 +103,3 @@ void	has_duplicates(t_array *data)
 // 46. Loop to stop at the end of int array;
 // 49. Loop to check with the neighbor;
 // 52. If has duplicate, stops immediately 
-
-int	has_valid_flag(char **argv)
-{
-	char	*flags[5];
-	int		i;
-
-	flags[0] = "simple";
-	flags[1] = "medium";
-	flags[2] = "complex";
-	flags[3] = "adaptive";
-	flags[4] = NULL;
-	i = -1;
-	if (is_flag(argv[1]))
-	{
-		while (flags[++i])
-		{
-			if (ft_strlen(&argv[1][2]) != ft_strlen(flags[i]))
-				continue ;
-			if (ft_strncmp(&argv[1][2], flags[i], ft_strlen(&argv[1][2])) == 0)
-				return (i);
-		}
-		end(ERR_INVALID_FLAG);
-	}
-	return (-1);
-}
-
-
-int is_target(int argc, char **argv, char *target)
-{
-	int index;
-	
-	index = 0;
-	while (++index < argc)
-	{
-		if (ft_strncmp(argv[index], target, ft_strlen(target) + 1) == 0)
-			return (1);
-	}
-	return (0);
-}
-
-int main(int argc, char **argv)
-{
-	printf("%d\n", has_benchmark(argc, argv, "--bench"));
-}
