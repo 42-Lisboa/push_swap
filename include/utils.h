@@ -26,5 +26,6 @@ void	has_duplicates(t_array *data);
 int		parse_all_flags(int argc, char **argv, t_flags *flag);
 int		get_strategy_idx(char *argv);
 void	end(int	error);
+void    dispatcher(int strategy, int bench, t_array *structure);
 
 #endif

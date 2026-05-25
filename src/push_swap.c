@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/05/24 04:22:48 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/05/25 23:24:11 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,51 @@ int main(int argc, char **argv)
     printf("-------------------------------------------------------------------\n\n");
 
     /* // 4. Integração futura com os números (comentada por agora)
-    // O teu is_valid_number agora deve receber o arv em num_start_idx 
+    // O teu is_valid_number agora deve receber o argv em num_start_idx 
     // para saber exatamente a partir de onde deve começar a ler!
     
-    t_array *numeros = is_valid_number(argc, &argv[i]);
-    has_duplicates(numeros);
-    
-    for (int i = 0; i < numeros->size; i++)
-    {
-        printf("Numero extraido: %d\n", numeros->values[i]);
-    }
     */
-
+   
+    // Seg fault: argv começa no meio mas conta a partir do iníciol. Solução:
+    // t_array *structure = is_valid_number(argc - num_start_idx + 1, &argv[num_start_idx - 1]);
+    // Ou seja, argv vai começar a contar no primeiro número
+    // t_array *structure = is_valid_number(argc, &argv[num_start_idx]);
+    t_array *structure = is_valid_number(argc - num_start_idx + 1, &argv[num_start_idx - 1]);
+    has_duplicates(structure);
+    dispatcher(flags.strategy, flags.bench, structure);
     return (0);
+}
+typedef void (*t_sort_fn)(int benchmark_flag, t_array *structure);
+
+void sort_simple(int bench, t_array *structure)
+{
+    printf("sort_simple");
+}
+void sort_medium(int bench, t_array *structure)
+{
+    printf("sort_medium");
+}
+void sort_complex(int bench, t_array *structure)
+{
+    printf("sort_complex");
+}
+void sort_adaptive(int bench, t_array *structure)
+{
+    printf("sort_adaptive");
+}
+
+void dispatcher(int strategy, int bench, t_array *structure)
+{
+    t_sort_fn fns[4];
+    fns[1] = sort_medium;
+    fns[0] = sort_simple;
+    fns[2] = sort_complex;
+    fns[3] = sort_adaptive;
+    printf("strategy: %d\n", strategy);
+    printf("bench: %d\n", bench);
+    for (int i = 0; i < structure->size; i++)
+    {
+        printf("Numero extraido: %d\n", structure->values[i]);
+    }
+    fns[strategy](bench, structure);
 }

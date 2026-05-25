@@ -16,6 +16,9 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] Multi-flag parsing and `t_flags` state implementation *by jalves*
 - [x] Strict validation against duplicate or conflicting flags *by jalves*
 - [x] Modularized parse_flags logic to respect the 25-line maximum rule *by jalves*
+- [x] Fixed `argc`/`argv` offset bug in `is_valid_number` call after flag parsing *by jastolfi*
+- [x] Added `dispatcher` with function pointer table routing to strategy sort stubs *by jastolfi*
+- [x] Declared `dispatcher` in `utils.h` *by jastolfi*
 
 ---
 *Jonathan Alves & Joao Astolfi — Programming Students @ 42*
