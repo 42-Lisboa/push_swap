@@ -6,7 +6,7 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 
 ## Current Status
 - [x] Input parsing and error validation, also for flags
-- [ ] Data structure implementation
+- [x] Data structure implementation
 - [ ] Stack operations implementation (`sa`, `pa`, `ra`, `rra`, etc.)
 - [ ] Small sort logic (3 to 5 numbers)
 - [ ] Large sort algorithm implementation (optimizing for 100 and 500 numbers)
@@ -19,6 +19,8 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] Fixed `argc`/`argv` offset bug in `is_valid_number` call after flag parsing *by jastolfi*
 - [x] Added `dispatcher` with function pointer table routing to strategy sort stubs *by jastolfi*
 - [x] Declared `dispatcher` in `utils.h` *by jastolfi*
+- [x] Finished main code for ops_push - lacks integration with capacity or other strategy to handle this edge case *by jalves*
+- [x] Created static function to make ops_swap.c cleaner *by jalves*
 
 ---
 *Jonathan Alves & Joao Astolfi — Programming Students @ 42*
