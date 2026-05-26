@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/24 04:08:52 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/05/26 14:24:08 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,51 +24,47 @@ void	is_valid_argc(int argc, char **argv)
 
 static void	fill_data(t_array *data, int argc, char **argv, int i);
 
-t_array	*is_valid_number(int argc, char **argv)
+t_array	*is_valid_number(int argc, char **argv, int start)
 {
-	int		i;
 	t_array	*data;
 
-	i = 1;
-	/* if (has_valid_flag(argv) >= 0)	// Nao precisamos mais fazer essa verificacao
-		i++; */						// pois parse_flags retorna proximo index depois da ultima flag
-	data = malloc(sizeof(t_array));	// basta entregarmos endereco do **argv na posicao i
+	data = malloc(sizeof(t_array));
 	if (!data)
 		return (NULL);
-	data->values = malloc(sizeof(int) * (argc - i));
+	data->values = malloc(sizeof(int) * (argc - start));
 	if (!data->values)
 	{
 		free(data);
 		end(ERR_MALLOC);
 	}
-	fill_data(data, argc, argv, i);
+	fill_data(data, argc, argv, start);
 	return (data);
 }
 // 35. argc - i: we remove from the count - program and the flag
 
-static void	fill_data(t_array *data, int argc, char **argv, int i)
+static void	fill_data(t_array *data, int argc, char **argv, int start)
 {
 	int	j;
 
 	j = 0;
-	while (i < argc)
+	while (start < argc)
 	{
-		if ((!(ft_isdigit(argv[i][0])
-				|| argv[i][0] == '-' && ft_isdigit(argv[i][1])
-				|| argv[i][0] == '+' && ft_isdigit(argv[i][1]))))
+		if ((!(ft_isdigit(argv[start][0])
+				|| argv[start][0] == '-' && ft_isdigit(argv[start][1])
+				|| argv[start][0] == '+' && ft_isdigit(argv[start][1]))))
 		{
 			free(data->values);
 			free(data);
 			end(ERR_NOT_VALID);
 		}
-		if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
+		if (ft_atoi(argv[start]) < INT_MIN || ft_atoi(argv[start]) > INT_MAX)
 		{
 			free(data->values);
 			free(data);
 			end(ERR_NOT_VALID);
 		}
-		data->values[j] = ft_atoi(argv[i]);
-		i++;
+		data->values[j] = ft_atoi(argv[start]);
+		start++;
 		j++;
 		data->size = j;
 	}

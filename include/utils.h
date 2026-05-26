@@ -21,11 +21,11 @@ typedef struct	s_flags
 }	t_flags;
 
 void	is_valid_argc(int argc, char **argv);
-t_array	*is_valid_number(int argc, char **argv);
+t_array	*is_valid_number(int argc, char **argv, int start);
 void	has_duplicates(t_array *data);
 int		parse_all_flags(int argc, char **argv, t_flags *flag);
 int		get_strategy_idx(char *argv);
 void	end(int	error);
-void    dispatcher(int strategy, int bench, t_array *structure);
+void    dispatcher(t_flags flags, t_array *structure);
 
 #endif
