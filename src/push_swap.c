@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/05/26 14:23:24 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/05/26 15:11:48 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int main(int argc, char **argv)
 {
     t_flags flags;
+    t_array *data_b;
     int     start;
 
     // 1. Validar se há argumentos suficientes (podes manter a tua função)
@@ -41,29 +42,28 @@ int main(int argc, char **argv)
     // Ou seja, argv vai começar a contar no primeiro número
     t_array *data = is_valid_number(argc, argv, start);
     has_duplicates(data);
-    dispatcher(flags, data);
+    dispatcher(flags, data, data_b);
     return (0);
 }
-typedef void (*t_sort_fn)(t_flags flags, t_array *data);
 
-void sort_simple(t_flags flags, t_array *data)
+void sort_simple(t_flags flags, t_array *data, t_array *data_b)
 {
     printf("sort_simple");
 }
-void sort_medium(t_flags flags, t_array *data)
+void sort_medium(t_flags flags, t_array *data, t_array *data_b)
 {
     printf("sort_medium");
 }
-void sort_complex(t_flags flags, t_array *data)
+void sort_complex(t_flags flags, t_array *data, t_array *data_b)
 {
     printf("sort_complex");
 }
-void sort_adaptive(t_flags flags, t_array *data)
+void sort_adaptive(t_flags flags, t_array *data, t_array *data_b)
 {
     printf("sort_adaptive");
 }
 
-void dispatcher(t_flags flags, t_array *data)
+void dispatcher(t_flags flags, t_array *data, t_array *data_b)
 {
     t_sort_fn fns[4];
     fns[0] = sort_simple;
@@ -76,5 +76,5 @@ void dispatcher(t_flags flags, t_array *data)
     {
         printf("Numero extraido: %d\n", data->values[i]);
     } */
-    fns[flags.strategy](flags, data);
+    fns[flags.strategy](flags, data, data_b);
 }

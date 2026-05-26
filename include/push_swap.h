@@ -11,6 +11,9 @@
 # include "../libft/libft.h"
 # include "utils.h"
 
+int	sa(t_array *data);
+int	sb(t_array *data_b);
+int	ss(t_array *data, t_array *data_b);
 
 
 #endif

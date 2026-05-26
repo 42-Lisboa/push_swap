@@ -11,7 +11,8 @@ typedef struct  s_array
 {
     int         *values;
     int         size;
-    int         *head;
+    int         head;
+    int         tail;
 }   t_array;
 
 typedef struct	s_flags
@@ -19,6 +20,8 @@ typedef struct	s_flags
 	int			strategy;
     int			bench;
 }	t_flags;
+
+typedef void (*t_sort_fn)(t_flags flags, t_array *data, t_array *data_b);
 
 void	is_valid_argc(int argc, char **argv);
 t_array	*is_valid_number(int argc, char **argv, int start);
