@@ -6,22 +6,19 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/26 20:30:08 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/26 21:49:58 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
+static void op_swap(t_array *data);
+
 int	sa(t_array *data)
 {
-	int	tmp;
-
 	if (data->size <= 1)
 		return (0);
-	tmp = data->values[data->head % data->size]; // aqui tambem precisamos utilizar capacity
-	data->values[data->head % data->size]
-		= data->values[(data->head + 1) % data->size];
-	data->values[(data->head + 1) % data->size] = tmp;
+	op_swap(data);
 	ft_printf("sa\n");
 	return (1);
 }
@@ -32,10 +29,7 @@ int	sb(t_array *data_b)
 
 	if (data_b->size <= 1)
 		return (0);
-	tmp = data_b->values[data_b->head % data_b->size];
-	data_b->values[data_b->head % data_b->size]
-		= data_b->values[(data_b->head + 1) % data_b->size];
-	data_b->values[(data_b->head + 1) % data_b->size] = tmp;
+	op_swap(data_b);
 	ft_printf("sb\n");
 	return (1);
 }
@@ -47,21 +41,21 @@ int	ss(t_array *data, t_array *data_b)
 	if (data->size <= 1 && data_b->size <= 1)
 		return (0);
 	if (data->size > 1)
-	{
-		tmp = data->values[data->head % data->size];
-		data->values[data->head % data->size]
-			= data->values[(data->head + 1) % data->size];
-		data->values[(data->head + 1) % data->size] = tmp;
-	}
+		op_swap(data);
 	if (data_b->size > 1)
-	{
-		tmp = data_b->values[data_b->head % data_b->size];
-		data_b->values[data_b->head % data_b->size]
-			= data_b->values[(data_b->head + 1) % data_b->size];
-		data_b->values[(data_b->head + 1) % data_b->size] = tmp;
-	}
+		op_swap(data_b);
 	ft_printf("ss\n");
 	return (1);
+}
+
+static void op_swap(t_array *data)
+{
+	int	tmp;
+
+	tmp = data->values[data->head % data->size]; // aqui tambem precisamos utilizar capacity
+	data->values[data->head % data->size]
+		= data->values[(data->head + 1) % data->size];
+	data->values[(data->head + 1) % data->size] = tmp;
 }
 /* 
 int main(void)
