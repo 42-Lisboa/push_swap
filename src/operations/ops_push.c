@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/27 16:34:47 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/05/27 18:52:43 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	pa(t_array *data_b, t_array *data)
 	if (data_b->size == 0 || data->size == data->capacity)
 		return (0);
 	op_push(data_b, data);
-	ft_printf("pa");
+	ft_printf("pa\n");
 	return (1);
 }
 
@@ -28,7 +28,7 @@ int	pb(t_array *data, t_array *data_b)
 	if (data->size == 0 || data_b->size == data_b->capacity)
 		return (0);
 	op_push(data, data_b);
-	ft_printf("pb");
+	ft_printf("pb\n");
 	return (1);
 }
 
