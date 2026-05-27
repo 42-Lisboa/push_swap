@@ -3,39 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/26 22:01:27 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/27 16:34:47 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int pa(t_array *data, t_array *data_b)
+static void	op_push(t_array *src, t_array *dest);
+
+int	pa(t_array *data_b, t_array *data)
 {
-	int tmp;
-	if (data_b->size == 0)
+	if (data_b->size == 0 || data->size == data->capacity)
 		return (0);
-
-	data->size++;
-	data->head = (data->head - 1 + data->size) % data->size;
-	data->values[data->head] = data_b->values[data_b->head];
-	data_b->size--;
-	data_b->head = (data_b->head + 1) % data_b->size;	// dentro da manipulacao do head (linhas 22 e 25)
-														// precisamos trocar size pelo capacity (ver foto)
-
+	op_push(data_b, data);
 	ft_printf("pa");
+	return (1);
 }
 
-int pb(t_array *data, t_array *data_b)
+int	pb(t_array *data, t_array *data_b)
 {
-	if (data->size == 0)
+	if (data->size == 0 || data_b->size == data_b->capacity)
 		return (0);
-	ft_printf("pb");	
+	op_push(data, data_b);
+	ft_printf("pb");
+	return (1);
+}
+
+static void	op_push(t_array *src, t_array *dest)
+{
+	dest->size++;
+	dest->head = (dest->head - 1 + dest->capacity) % dest->capacity;
+	dest->values[dest->head] = src->values[src->head];
+	src->size--;
+	src->head = (src->head + 1) % src->capacity;
+}
+/* 
+void print_stack(char *name, t_array *s)
+{
+    printf("%s: ", name);
+    for (int i = 0; i < s->size; i++)
+    {
+        int idx = (s->head + i) % s->capacity;
+        printf("%d ", s->values[idx]);
+    }
+    printf("\n");
 }
 
 int main(void)
 {
-	
-}
+    t_array data;
+    t_array data_b;
+    
+    data.capacity = 5;
+    data.values = malloc(sizeof(int) * data.capacity);
+    data.values[0] = 1; data.values[1] = 2;
+	data.values[2] = 3; data.values[3] = 4;
+    data.head = 0;
+    data.size = 4;
+
+    data_b.capacity = 5;
+    data_b.values = malloc(sizeof(int) * data_b.capacity);
+    data_b.values[0] = 5; data_b.values[1] = 6;
+	data_b.values[2] = 7; data_b.values[3] = 8;
+    data_b.head = 0;
+    data_b.size = 4;
+
+    printf("--- ANTES ---\n");
+    print_stack("STACK A", &data);
+    print_stack("STACK B", &data_b);
+
+    printf("--- APLICANDO pa ---\n");
+
+    pa(&data_b, &data);
+    print_stack("\nSTACK A", &data);
+    print_stack("STACK B", &data_b);
+
+	pb(&data, &data_b);
+	print_stack("\nSTACK A", &data);
+    print_stack("STACK B", &data_b);
+
+    free(data.values);
+    free(data_b.values);
+    return (0);
+} */

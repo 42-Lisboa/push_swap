@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/26 21:49:58 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:05:34 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ static void op_swap(t_array *data)
 {
 	int	tmp;
 
-	tmp = data->values[data->head % data->size]; // aqui tambem precisamos utilizar capacity
-	data->values[data->head % data->size]
-		= data->values[(data->head + 1) % data->size];
-	data->values[(data->head + 1) % data->size] = tmp;
+	tmp = data->values[data->head];
+	data->values[data->head] = data->values[(data->head + 1) % data->capacity];
+	data->values[(data->head + 1) % data->capacity] = tmp;
 }
 /* 
 int main(void)

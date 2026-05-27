@@ -12,7 +12,7 @@ typedef struct  s_array
     int         *values;
     int         size;
     int         head;
-    int         tail;
+    int         capacity;
 }   t_array;
 
 typedef struct	s_flags

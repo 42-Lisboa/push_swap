@@ -14,6 +14,7 @@
 int	sa(t_array *data);
 int	sb(t_array *data_b);
 int	ss(t_array *data, t_array *data_b);
-
+int	pa(t_array *data_b, t_array *data);
+int	pb(t_array *data, t_array *data_b);
 
 #endif
