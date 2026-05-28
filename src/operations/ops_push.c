@@ -40,6 +40,8 @@ static void	op_push(t_array *src, t_array *dest)
 	src->size--;
 	src->head = (src->head + 1) % src->capacity;
 }
+// 38. To open a new first position in dest by moving dest->head backwards
+// 41. And remove the pushed value from src by moving src->head forwards
 /* 
 void print_stack(char *name, t_array *s)
 {

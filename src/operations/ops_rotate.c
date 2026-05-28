@@ -46,8 +46,8 @@ static void	op_rotate(t_array *data)
 	data->head = (data->head + 1) % data->capacity;
 	data->values[((data->head + data->size -1) % data->capacity)] = tmp;
 }
-// 23. To find the stack last position after increasing the size->head
-// 23. And save the previous first value (tmp) as now the last value
+// 47. To find the stack last position after increasing the size->head
+// 47. And save the previous first value (tmp) as now the last value
 /* 
 void	print_stack(char *name, t_array *s)
 {

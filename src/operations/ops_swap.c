@@ -56,6 +56,8 @@ static void op_swap(t_array *data)
 	data->values[data->head] = data->values[(data->head + 1) % data->capacity];
 	data->values[(data->head + 1) % data->capacity] = tmp;
 }
+// 55. To save the first value before replacing it with the next value
+// 57. And move the saved first value into the second stack position
 /* 
 int main(void)
 {
