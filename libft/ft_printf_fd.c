@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:15:34 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/28 17:29:52 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/28 18:44:38 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_printf_fd(const char *str, int fd, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			total_print += if_print(str[i], args);
+			total_print += if_print_fd(str[i], args, fd);
 		}
 		else
 			total_print += ft_putchar_fd(str[i], fd);

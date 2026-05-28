@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 20:36:48 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/28 17:36:39 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/28 18:41:34 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 // ✅ Libc functions
 
+void	ft_swap(int *a, int *b);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
