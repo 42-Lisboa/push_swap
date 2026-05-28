@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rrotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 11:06:10 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/28 11:54:52 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/05/28 17:23:41 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,15 @@ static void	op_rrotate(t_array *data)
 	if (data->size <= 1)
 		return ;
 	tmp = data->values[(data->head + data->size - 1) % data->capacity];
-    if (data->head == 0)
-        data->head = data->capacity - 1;
-    else
-	    data->head--;
+	if (data->head == 0)
+		data->head = data->capacity - 1;
+	else
+		data->head--;
 	data->values[data->head] = tmp;
 }
 // 45. To find and save the stack last value before moving the head backwards
 // 50. And save that previous last value (tmp) as now the first value
-
-
+/* 
 void	print_stack(char *name, t_array *s)
 {
     printf("%s: ", name);
@@ -85,4 +84,4 @@ int main(void)
 
     free(data.values);
     return (0);
-}
+} */
