@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:15:34 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/28 17:30:08 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/28 17:29:52 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	if_print(char c, va_list args);
+static int	if_print_fd(char c, va_list args, int fd);
 
-int	ft_printf(const char *str, ...)
+int	ft_printf_fd(const char *str, int fd, ...)
 {
 	va_list	args;
 	int		i;
@@ -22,7 +22,7 @@ int	ft_printf(const char *str, ...)
 
 	if (!str)
 		return (-1);
-	va_start(args, str);
+	va_start(args, fd);
 	i = 0;
 	total_print = 0;
 	while (str[i])
@@ -33,33 +33,33 @@ int	ft_printf(const char *str, ...)
 			total_print += if_print(str[i], args);
 		}
 		else
-			total_print += ft_putchar_fd(str[i], 1);
+			total_print += ft_putchar_fd(str[i], fd);
 		i++;
 	}
 	va_end(args);
 	return (total_print);
 }
 
-static int	if_print(char c, va_list args)
+static int	if_print_fd(char c, va_list args, int fd)
 {
 	int	total_print;
 
 	total_print = 0;
 	if (c == 'd' || c == 'i')
-		total_print += ft_putnbr_fd(va_arg(args, int), 1);
+		total_print += ft_putnbr_fd(va_arg(args, int), fd);
 	else if (c == 'c')
-		total_print += ft_putchar_fd(va_arg(args, int), 1);
+		total_print += ft_putchar_fd(va_arg(args, int), fd);
 	else if (c == 's')
-		total_print += ft_putstr_fd(va_arg(args, char *), 1);
+		total_print += ft_putstr_fd(va_arg(args, char *), fd);
 	else if (c == 'u')
-		total_print += ft_putnbru_fd(va_arg(args, unsigned int), 1);
+		total_print += ft_putnbru_fd(va_arg(args, unsigned int), fd);
 	else if (c == 'x')
-		total_print += ft_puthex_fd(va_arg(args, unsigned int), 1);
+		total_print += ft_puthex_fd(va_arg(args, unsigned int), fd);
 	else if (c == 'X')
-		total_print += ft_puthex_up_fd(va_arg(args, unsigned int), 1);
+		total_print += ft_puthex_up_fd(va_arg(args, unsigned int), fd);
 	else if (c == 'p')
-		total_print += ft_putpointer_fd(va_arg(args, unsigned long), 1);
+		total_print += ft_putpointer_fd(va_arg(args, unsigned long), fd);
 	else if (c == '%')
-		total_print += ft_putchar_fd('%', 1);
+		total_print += ft_putchar_fd('%', fd);
 	return (total_print);
 }

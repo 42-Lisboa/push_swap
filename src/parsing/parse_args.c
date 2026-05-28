@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/26 14:24:08 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/05/28 17:35:24 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ static void	fill_data(t_array *data, int argc, char **argv, int start)
 			free(data);
 			end(ERR_NOT_VALID);
 		}
-		if (ft_atoi(argv[start]) < INT_MIN || ft_atoi(argv[start]) > INT_MAX)
+		if (ft_atol(argv[start]) < INT_MIN || ft_atol(argv[start]) > INT_MAX)
 		{
 			free(data->values);
 			free(data);
 			end(ERR_NOT_VALID);
 		}
-		data->values[j] = ft_atoi(argv[start]);
+		data->values[j] = ft_atol(argv[start]);
 		start++;
 		j++;
 		data->size = j;

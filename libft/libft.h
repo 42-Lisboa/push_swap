@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 20:36:48 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/20 17:59:47 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/05/28 17:36:39 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
-long	ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 
@@ -79,8 +80,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// ✅ ft_printf function
+// ✅ ft_printf functions
 
 int	ft_printf(const char *str, ...);
+int	ft_printf_fd(const char *str, int fd, ...);
 
 #endif
