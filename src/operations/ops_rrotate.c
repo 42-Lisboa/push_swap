@@ -49,6 +49,8 @@ static void	op_rrotate(t_array *data)
 	    data->head--;
 	data->values[data->head] = tmp;
 }
+// 45. To find and save the stack last value before moving the head backwards
+// 50. And save that previous last value (tmp) as now the first value
 
 
 void	print_stack(char *name, t_array *s)
