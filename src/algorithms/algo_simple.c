@@ -6,20 +6,20 @@
 /*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/29 17:29:07 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/05/29 18:05:35 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	find_smallest_idx(t_array *data);
+int	movements_to_smallest(t_array *data);
 
 void	strategy_simple(t_array *data, t_array *data_b)
 {
-	int i;
+	int moves;
 	int	j;
 
-	i = find_smallest_idx(data);
+	moves = movements_to_smallest(data);
 	printf("index i: %d\n", i);
 	j = 0;
 	if (i <= data->size / 2)
@@ -36,6 +36,8 @@ void	strategy_simple(t_array *data, t_array *data_b)
 	{
 		while (j )
 	}
+	/* 🚧🚧🚧🚧🚧🚧🚧----WIP----🚧🚧🚧🚧🚧🚧🚧 */
+	// mudar para logica de fazer rotate na primeira metade, e fazer reverse rotate na segunda metade
 }
 
 void	selection_sort_adapted(t_array *data)
@@ -56,21 +58,28 @@ void	selection_sort_adapted(t_array *data)
 		i++;
 	}
 }
-int	find_smallest_idx(t_array *data)
-{
-	int	i;
-	int	j;
 
-	i = data->head;
-	j = i + 1;
-		while (j < data->head + data->size)
-		{
-			if (data->values[i] <= data->values[j])
-				j++;
-			else
-				i = j;
-		}
-	return (i);
+int movements_to_smallest(t_array *data)
+{
+    int count;
+    int count_moves;
+    int smallest_val;
+    int capacity_idx;
+
+    smallest_val = data->values[data->head];
+    count_moves = 0;
+    count = 1;
+    while (count < data->size)
+    {
+        capacity_idx = (data->head + count) % data->capacity;
+        if (data->values[capacity_idx] < smallest_val)
+        {
+            smallest_val = data->values[capacity_idx];
+            count_moves = count;
+        }
+        count++;
+    }
+    return (count_moves);
 }
 
 void print_stack(char *name, t_array *s)
@@ -114,7 +123,7 @@ int main(void)
 	ft_printf_fd("]", 1); */
 	
 	// Testing pb - Strategy Simple
-	ft_printf("small@index #%d\n", find_smallest_idx(data.values, data.size));
+	ft_printf("small@index #%d\n", movements_to_smallest(data.values, data.size));
 	print_stack("Stack A", &data);
 	printf("\n");
 	print_stack("Stack B", &data_b);
@@ -124,6 +133,3 @@ int main(void)
 	printf("\n");
 	print_stack("Stack B", &data_b);
 }
-
-/* 🚧🚧🚧🚧🚧🚧🚧----WIP----🚧🚧🚧🚧🚧🚧🚧 */
-
