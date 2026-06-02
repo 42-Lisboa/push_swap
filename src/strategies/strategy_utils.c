@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 10:52:22 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/02 15:09:39 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/02 17:58:39 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	swap_small_stack(t_array *data, t_array *data_b)
 		return (sort_three(data));
 	else if (data->size <= 5)
 		return (sort_five(data, data_b));
+	return (0);
 }
 // 19. Function to dispatch the small stack cases 
 
