@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/05/26 15:11:48 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/02 13:51:51 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     // Ou seja, argv vai começar a contar no primeiro número
     t_array *data = is_valid_number(argc, argv, start);
     has_duplicates(data);
-    dispatcher(flags, data, data_b);
+    dispatcher(flags, data);
     return (0);
 }
 
@@ -63,18 +63,24 @@ void sort_adaptive(t_flags flags, t_array *data, t_array *data_b)
     printf("sort_adaptive");
 }
 
-void dispatcher(t_flags flags, t_array *data, t_array *data_b)
+void dispatcher(t_flags flags, t_array *data)
 {
-    t_sort_fn fns[4];
+    t_array     *data_b;
+	int         *number_b;
+    t_sort_fn   fns[4];
+
     fns[0] = sort_simple;
     fns[1] = sort_medium;
     fns[2] = sort_complex;
     fns[3] = sort_adaptive;
-/*     printf("strategy: %d\n", strategy);
-    printf("bench: %d\n", bench);
-    for (int i = 0; i < data->size; i++)
-    {
-        printf("Numero extraido: %d\n", data->values[i]);
-    } */
+    number_b = malloc(sizeof(int) * data->capacity);
+    if (!number_b)
+        end(ERR_MALLOC);
+    ft_bzero(number_b, sizeof(int) * data->capacity);
+	data_b->values = number_b;
+	data_b->size = 0;
+	data_b->capacity = data->capacity;
+	data_b->head = 0;
+
     fns[flags.strategy](flags, data, data_b);
 }
