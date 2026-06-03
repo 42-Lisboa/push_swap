@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_simple.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/02 19:08:16 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/03 13:00:16 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
-int	movements_to_smallest(t_array *data);
 
 int	strategy_simple(t_array *data, t_array *data_b)
 {
@@ -39,12 +37,12 @@ int	strategy_simple(t_array *data, t_array *data_b)
 		counter += pa(data_b, data);
 	return (counter);
 }
-// 42. Find logical position of smallest element;
-// 46. If smallest is in first half, rotate forward;
-// 49. Rotate until smallest reaches the top;
-// 56. If smallest is in second half, rotate backward;
-// 59. Use shortest path with reverse rotations;
-// 65. Push smallest element to stack B;
+// 26. Find logical position of smallest element;
+// 28. If smallest is in first half, rotate forward;
+// 29. Rotate until smallest reaches the top;
+// 31. If smallest is in second half, rotate backward;
+// 32. Use shortest path with reverse rotations;
+// 34. Push smallest element to stack B;
 
 int	movements_to_smallest(t_array *data)
 {
@@ -68,11 +66,11 @@ int	movements_to_smallest(t_array *data)
 	}
 	return (count_moves);
 }
-// 68. Start assuming first element is the smallest;
-// 71. Loop through all logical positions;
-// 76. Update smallest value when a smaller one is found;
-// 26. Save the logical position of smallest value;
-// 31. Return amount of moves to reach smallest element;
+// 54. Start assuming first element is the smallest;
+// 57. Loop through all logical positions;
+// 62. Update smallest value when a smaller one is found;
+// 59. Save the logical position of smallest value;
+// 67. Return amount of moves to reach smallest element;
 /* 
 void	print_stack(char *name, t_array *s)
 {
