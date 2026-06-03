@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 21:45:26 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/28 17:31:45 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/03 14:53:36 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(void)
 	printf("Test 6: %d\n", ft_atoi("2147483647"));  // Expected: (INT_MAX)
 	printf("Test 7: %d\n", ft_atoi("-2147483648")); // Expected: (INT_MIN)
 	printf("Test 8: %d\n\n", ft_atoi("2147483648"));  // Expected: 0
-	printf("Test 9: %d\n\n", ft_atoi("999999999999999999999999"));  // Expected: 0
+	printf("Test 9: %d\n\n", ft_atoi("99999999999999999"));  // Expected: 0
 	return (0);
 } */

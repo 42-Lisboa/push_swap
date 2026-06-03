@@ -6,13 +6,13 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/27 15:05:34 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/03 14:47:20 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void op_swap(t_array *data);
+static void	op_swap(t_array *data);
 
 int	sa(t_array *data)
 {
@@ -48,7 +48,7 @@ int	ss(t_array *data, t_array *data_b)
 	return (1);
 }
 
-static void op_swap(t_array *data)
+static void	op_swap(t_array *data)
 {
 	int	tmp;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 20:36:48 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/03 14:41:30 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/03 14:54:04 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // ✅ ft_printf functions
 
-int	ft_printf(const char *str, ...);
-int	ft_printf_fd(const char *str, int fd, ...);
+int		ft_printf(const char *str, ...);
+int		ft_printf_fd(const char *str, int fd, ...);
 
 #endif

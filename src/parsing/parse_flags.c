@@ -3,54 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:54:11 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/05/24 03:44:21 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/03 14:49:32 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int parse_all_flags(int argc, char **argv, t_flags *flag)
+int	parse_all_flags(int argc, char **argv, t_flags *flag)
 {
-    int i;
-    int tmp;
+	int	i;
+	int	tmp;
 
-    i = 1;
-    flag->strategy = -1;
-    flag->bench = 0;
-    while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
-    {
-        tmp = get_strategy_idx(&argv[i][2]);
-        if (tmp != -1 && flag->strategy == -1)
-            flag->strategy = tmp;
-        else if (ft_strncmp(&argv[i][2], "bench", 6) == 0 && flag->bench == 0)
-            flag->bench = 1;
-        else
-            end(ERR_INVALID_FLAG);
-        i++;
-    }
-    if (flag->strategy == -1)
-        flag->strategy = 3;
-    return (i);
+	i = 1;
+	flag->strategy = -1;
+	flag->bench = 0;
+	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
+	{
+		tmp = get_strategy_idx(&argv[i][2]);
+		if (tmp != -1 && flag->strategy == -1)
+			flag->strategy = tmp;
+		else if (ft_strncmp(&argv[i][2], "bench", 6) == 0 && flag->bench == 0)
+			flag->bench = 1;
+		else
+			end(ERR_INVALID_FLAG);
+		i++;
+	}
+	if (flag->strategy == -1)
+		flag->strategy = 3;
+	return (i);
 }
 
-int get_strategy_idx(char *argv)
+int	get_strategy_idx(char *argv)
 {
-    char    *flags[5];
-    int     i;
+	char	*flags[5];
+	int		i;
 
-    flags[0] = "simple";
-    flags[1] = "medium";
-    flags[2] = "complex";
-    flags[3] = "adaptive";
-    flags[4] = NULL;
-    i = -1;
-    while (flags[++i])
-    {
-        if (ft_strncmp(argv, flags[i], ft_strlen(flags[i]) + 1) == 0)
-            return (i);
-    }
-    return (-1);
+	flags[0] = "simple";
+	flags[1] = "medium";
+	flags[2] = "complex";
+	flags[3] = "adaptive";
+	flags[4] = NULL;
+	i = -1;
+	while (flags[++i])
+	{
+		if (ft_strncmp(argv, flags[i], ft_strlen(flags[i]) + 1) == 0)
+			return (i);
+	}
+	return (-1);
 }
