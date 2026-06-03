@@ -6,11 +6,11 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:54:11 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/03 14:49:32 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/03 16:27:08 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 int	parse_all_flags(int argc, char **argv, t_flags *flag)
 {
