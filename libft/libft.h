@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 20:36:48 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/28 18:41:34 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/03 14:41:30 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		ft_puthex_fd(unsigned int n, int fd);
 int		ft_puthex_up_fd(unsigned int n, int fd);
 int		ft_putpointer_fd(unsigned long n, int fd);
 int		ft_putnbru_fd(unsigned int n, int fd);
+int		ft_sqrt(int number);
 
 // ✅ Linked list functions
 
