@@ -3,65 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_medium.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/04 13:03:28 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/04 14:58:23 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-#include <stdio.h>
 
-void	print_stack(char *name, t_array *s);
-int		*copy_values(int *numbers, int size);
-int		*sort_copy(int *data, int size);
-int		is_inside_chunk(int value, int min, int max);
-int		find_position_inside_chunk(t_array *data, int min, int max);
+static int	*copy_values(int *numbers, int size);
+static int	*sort_copy(int *data, int size);
+static int	is_in_bucket(int value, int min, int max);
+static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max);
+
+void		print_stack(char *name, t_array *s);
 
 int	strategy_medium(t_array *data, t_array *data_b)
 {
-	int *ordered_stack_a;
-	int index;
-	int	chunk_size;
-	int	chunk_start;
-	int	chunk_end;
+	int *sorted;
+	int fixed_data_size;
+	int	bucket_size;
+	int	bucket_start;
+	int	bucket_end;
+	int	counter;
 
-	index = 0;
-	chunk_start = 0;
-	chunk_size = ft_sqrt(data->size);
-	chunk_end = chunk_size - 1;
-	ordered_stack_a = sort_copy(copy_values(data->values, data->size), data->size);
-	while (chunk_start < data->size)
+	counter = 0;
+	bucket_start = 0;
+	bucket_size = ft_sqrt(data->size);
+	bucket_end = bucket_size - 1;
+	sorted = sort_copy(copy_values(data->values, data->size), data->size);
+	fixed_data_size = data->size;
+	while (bucket_start < fixed_data_size)
 	{
-		find_position_inside_chunk(data, ordered_stack_a[chunk_start], ordered_stack_a[chunk_end]);
-		chunk_start = chunk_end + 1;
-		chunk_end = chunk_start + chunk_size - 1;
-		if (chunk_end > data->size - 1)
-			chunk_end = data->size - 1;
+		counter += send_to_bucket(data, data_b, sorted[bucket_start], sorted[bucket_end]);
+		ft_printf("DATA SIZE = %d\n", data->size);
+		counter += strategy_simple(data_b, data);
+		print_stack("STACK B: ", data_b);
+		bucket_start = bucket_end + 1;
+		bucket_end = bucket_start + bucket_size - 1;
+		if (bucket_end > data->size - 1)
+			bucket_end = bucket_start;
 	}
-	free(ordered_stack_a);	
-	return (1);
+	free(sorted);
+	return (counter);
 }
 
-int	*copy_values(int *numbers, int size)
+static int	*copy_values(int *numbers, int size)
 {
 	int *copied_stack;
-	int index;
+	int i;
 	
 	copied_stack = malloc(sizeof(int) * size);
 	if (!copied_stack)
 		end(ERR_MALLOC);
-	index = 0;
-	while (index < size)
+	i = 0;
+	while (i < size)
 	{
-		copied_stack[index] = numbers[index];
-		index++;
+		copied_stack[i] = numbers[i];
+		i++;
 	}
 	return (copied_stack);
 }
 
-int *sort_copy(int *numbers, int size)
+static int *sort_copy(int *numbers, int size)
 {
 	int	i;
 	int	j;
@@ -81,25 +86,27 @@ int *sort_copy(int *numbers, int size)
 	return (numbers);
 }
 
-int is_inside_chunk(int value, int min, int max)
+static int is_in_bucket(int value, int min, int max)
 {
 	return (min <= value && value <= max);
 }
 
-int find_position_inside_chunk(t_array *data, int min, int max)
+static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	while (index < data->size)
+	i = 0;
+	while (i < data->size)
 	{
-		if (is_inside_chunk(data->values[index], min, max))
-			return (index);
-		index++;
+		if (is_in_bucket(data->values[data->head], min, max))
+			pb(data, data_b);
+		else
+			ra(data);
+		i++;
 	}
-	return (-1);
+	return (i - 1);
 }
-/* void	print_stack(char *name, t_array *s)
+void	print_stack(char *name, t_array *s)
 {
 	ft_printf("%s: ", name);
     for (int i = 0; i < s->size; i++)
@@ -108,7 +115,7 @@ int find_position_inside_chunk(t_array *data, int min, int max)
         ft_printf("%d ", s->values[idx]);
     }
     ft_printf("\n");
-} */
+}
 
 int main(void)
 {
