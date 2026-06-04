@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:52 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/03 14:58:23 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/04 21:25:53 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ int		get_strategy_idx(char *argv);
 void	end(int error);
 void	dispatcher(t_flags flags, t_array *structure);
 int		movements_to_smallest(t_array *data);
+int		movements_to_greatest(t_array *data_b);
+int		movements_next_bucket_val(t_array *src, int min, int max);
+int		is_in_bucket(int value, int min, int max);
 int		swap_small_stack(t_array *data, t_array *data_b);
+int		*copy_values(int *numbers, int size);
+int		*sort_copy(int *numbers, int size);
 
 #endif
