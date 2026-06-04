@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/03 22:39:18 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/04 13:03:28 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,15 @@ int	strategy_medium(t_array *data, t_array *data_b)
 	chunk_size = ft_sqrt(data->size);
 	chunk_end = chunk_size - 1;
 	ordered_stack_a = sort_copy(copy_values(data->values, data->size), data->size);
-	while (chunk_end < data->size)
+	while (chunk_start < data->size)
 	{
-		ft_printf("chunk_min: %d\n", ordered_stack_a[chunk_start]);
-		ft_printf("chunk_max: %d\n", ordered_stack_a[chunk_end]);
 		find_position_inside_chunk(data, ordered_stack_a[chunk_start], ordered_stack_a[chunk_end]);
 		chunk_start = chunk_end + 1;
 		chunk_end = chunk_start + chunk_size - 1;
 		if (chunk_end > data->size - 1)
-			chunk_end = chunk_start;
-		ft_printf("chunk_start: %d\n", chunk_start);
-		ft_printf("chunk_end: %d\n", chunk_end);
-		ft_printf("\n");
+			chunk_end = data->size - 1;
 	}
-	free(ordered_stack_a);
+	free(ordered_stack_a);	
 	return (1);
 }
 
@@ -98,12 +93,11 @@ int find_position_inside_chunk(t_array *data, int min, int max)
 	index = 0;
 	while (index < data->size)
 	{
-		if (is_inside_chunk(data->values[index], min, max)){
-			ft_printf("Atual: %d\n", data->values[index]);
-		}
+		if (is_inside_chunk(data->values[index], min, max))
+			return (index);
 		index++;
 	}
-	return (1);
+	return (-1);
 }
 /* void	print_stack(char *name, t_array *s)
 {
