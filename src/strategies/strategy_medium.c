@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_medium.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/04 21:57:19 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/05 16:35:21 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,146 +15,111 @@
 static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max);
 static int	sort_and_push_reverse(t_array *src, t_array *dest);
 
-/* int	strategy_medium(t_array *data, t_array *data_b)
-{
-	int *sorted;
-	int fixed_data_size;
-	int	bucket_size;
-	int	bucket_start;
-	int	bucket_end;
-	int	counter;
-
-	counter = 0;
-	bucket_start = 0;
-	bucket_size = ft_sqrt(data->size);
-	bucket_end = bucket_size - 1;
-	sorted = sort_copy(copy_values(data->values, data->size), data->size);
-	fixed_data_size = data->size;
-	while (bucket_start < fixed_data_size)
-	{
-		counter += send_to_bucket(
-			data,
-			data_b,
-			sorted[bucket_start],
-			sorted[bucket_end]
-		);
-		bucket_start = bucket_end + 1;
-		bucket_end = bucket_start + bucket_size - 1;
-		if (bucket_end > data->size - 1)
-			bucket_end = bucket_start;
-	}
-	counter += sort_and_push_reverse(data_b, data);
-	while (data_b->size > 0)
-		counter += pa(data_b, data);
-	return (free(sorted), counter);
-} */
 int	strategy_medium(t_array *data, t_array *data_b)
 {
-	int	*sorted;
-	int	fixed_data_size;
-	int	bucket_start;
-	int	bucket_end;
-	int	counter;
+    int *sorted;
+    int fixed_data_size;
+    int bucket_start;
+    int bucket_end;
+    int counter;
 
-	counter = 0;
-	bucket_start = 0;
-	fixed_data_size = data->size;
-	bucket_end = ft_sqrt(fixed_data_size) - 1;
-	sorted = sort_copy(copy_values(data->values, data->size), data->size);
-	while (bucket_start < fixed_data_size)
-	{
-		counter += send_to_bucket(
-				data,
-				data_b,
-				sorted[bucket_start],
-				sorted[bucket_end]
-				);
-		bucket_start = bucket_end + 1;
-		bucket_end = bucket_start + ft_sqrt(fixed_data_size) - 1;
-		if (bucket_end > data->size - 1)
-			bucket_end = bucket_start;
-	}
-	counter += sort_and_push_reverse(data_b, data);
-	while (data_b->size > 0)
-		counter += pa(data_b, data);
-	return (free(sorted), counter);
+    counter = 0;
+    bucket_start = 0;
+    fixed_data_size = data->size;
+    bucket_end = ft_sqrt(fixed_data_size) - 1;
+    sorted = sort_copy(copy_values(data->values, data->size), data->size);
+    while (bucket_start < fixed_data_size)
+    {
+        counter += send_to_bucket(data, data_b,
+            sorted[bucket_start], sorted[bucket_end]);
+        bucket_start = bucket_end + 1;
+        bucket_end = bucket_start + ft_sqrt(fixed_data_size) - 1;
+        if (bucket_end > data->size - 1)
+            bucket_end = bucket_start;
+    }
+    counter += sort_and_push_reverse(data_b, data);
+    while (data_b->size > 0)
+        counter += pa(data_b, data);
+    return (free(sorted), counter);
 }
+// 12. Calculate the initial chunk/bucket size using the square root of the total size;
+// 13. Create a sorted copy of the stack to establish our value thresholds;
+// 14. Loop until all logical buckets have been processed;
+// 16. Push all elements within the current bucket range [min, max] to Stack B;
+// 18. Shift the bucket start index forward for the next iteration;
+// 19. Shift the bucket end index forward by the chunk size amount;
+// 20. Prevent the bucket end index from exceeding the actual array limits;
+// 23. Sort the semi-organized Stack B and push the highest values back to Stack A;
+// 26. Free the allocated sorted array to prevent memory leaks and return total moves;
 
-int	is_in_bucket(int value, int min, int max)
+int is_in_bucket(int value, int min, int max)
 {
-	return (value >= min && value <= max);
+    return (value >= min && value <= max);
 }
+// 30. Utility function to check if a value falls within the target bucket range;
 
-/* static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max)
+static int  send_to_bucket(t_array *data, t_array *data_b, int min, int max)
 {
-	int	i;
-	int fixed_data_size;
-	int	counter;
+    int i;
+    int j;
+    int fixed_data_size;
+    int counter;
+    int moves;
 
-	i = 0;
-	fixed_data_size = data->size;
-	while (i < fixed_data_size)
-	{
-		if (is_in_bucket(data->values[data->head], min, max))
-			counter += pb(data, data_b);
-		else
-			counter += ra(data);
-		i++;
-	}
-	return (counter);
-} */
-
-static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max)
-{
-	int	i;
-	int	j;
-	int	fixed_data_size;
-	int	counter;
-	int	moves;
-
-	j = 0;
-	counter = 0;
-	fixed_data_size = data->size;
-	while (j++ < fixed_data_size)
-	{
-		i = 0;
-		moves = movements_next_bucket_val(data, min, max);
-		if (moves == -1)
-			break ;
-		if (moves <= data->size / 2)
-			while (i++ < moves)
-				counter += ra(data);
-		else
-			while (i++ < data->size - moves)
-				counter += rra(data);
-		counter += pb(data, data_b);
-	}
-	return (counter);
+    j = 0;
+    counter = 0;
+    fixed_data_size = data->size;
+    while (j++ < fixed_data_size)
+    {
+        i = 0;
+        moves = movements_next_bucket_val(data, min, max);
+        if (moves == -1)
+            break ;
+        if (moves <= data->size / 2)
+            while (i++ < moves)
+                counter += ra(data);
+        else
+            while (i++ < data->size - moves)
+                counter += rra(data);
+        counter += pb(data, data_b);
+    }
+    return (counter);
 }
+// 46. Loop a maximum amount of times equal to the current stack size;
+// 49. Find the shortest path (amount of moves) to the closest target element;
+// 50. If no target elements are left in Stack A, abort the current wave;
+// 52. If target is in the first half, rotate forward;
+// 55. If target is in the second half, rotate backward for efficiency;
+// 57. Push the found target element to Stack B;
 
-static int	sort_and_push_reverse(t_array *src, t_array *dest)
+static int  sort_and_push_reverse(t_array *src, t_array *dest)
 {
-	int	moves;
-	int	i;
-	int	counter;
+    int moves;
+    int i;
+    int counter;
 
-	counter = 0;
-	while (src->size > 0)
-	{
-		moves = movements_to_greatest(src);
-		i = 0;
-		if (moves <= src->size / 2)
-			while (i++ < moves)
-				counter += rb(src);
-		else
-			while (i++ < src->size - moves)
-				counter += rrb(src);
-		counter += pa(src, dest);
-	}
-	return (counter);
+    counter = 0;
+    while (src->size > 0)
+    {
+        moves = movements_to_greatest(src);
+        i = 0;
+        if (moves <= src->size / 2)
+            while (i++ < moves)
+                counter += rb(src);
+        else
+            while (i++ < src->size - moves)
+                counter += rrb(src);
+        counter += pa(src, dest);
+    }
+    return (counter);
 }
-
-/* void	print_stack(char *name, t_array *s)
+// 68. Loop until Stack B is completely empty;
+// 70. Find the exact position of the absolute highest value in Stack B;
+// 72. If the highest value is in the first half, rotate forward;
+// 75. If the highest value is in the second half, rotate backward;
+// 77. Push the highest value back to Stack A, guaranteeing descending order;
+/* 
+void	print_stack(char *name, t_array *s)
 {
 	ft_printf("%s: ", name);
     for (int i = 0; i < s->size; i++)
@@ -163,9 +128,9 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest)
         ft_printf("%d ", s->values[idx]);
     }
     ft_printf("\n");
-} */
+}
 
-/* int main(void)
+int main(void)
 {
 	// SMALL STACK 2 NUMBERS 
 	// t_array data;
@@ -302,5 +267,4 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest)
 	print_stack("Stack B", &data_b);
 	ft_printf("Total real de movimentos: %d\n", counter);
 	return (0);
- }
- */
+ } */
