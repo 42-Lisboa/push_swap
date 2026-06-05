@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/03 14:53:12 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/05 17:45:34 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int argc, char **argv)
+/* int	main(int argc, char **argv)
 {
 	t_flags	flags;
 	t_array	*data;
@@ -74,4 +74,4 @@ void	dispatcher(t_flags flags, t_array *data)
 	data_b->capacity = data->capacity;
 	data_b->head = 0;
 	fns[flags.strategy](flags, data, data_b);
-}
+} */
