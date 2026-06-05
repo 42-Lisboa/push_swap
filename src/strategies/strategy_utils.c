@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 10:52:22 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/04 20:58:46 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/04 21:54:39 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	*copy_values(int *numbers, int size)
 {
-	int *copied_stack;
-	int i;
-	
+	int	*copied_stack;
+	int	i;
+
 	copied_stack = malloc(sizeof(int) * size);
 	if (!copied_stack)
 		end(ERR_MALLOC);
@@ -29,7 +29,7 @@ int	*copy_values(int *numbers, int size)
 	return (copied_stack);
 }
 
-int *sort_copy(int *numbers, int size)
+int	*sort_copy(int *numbers, int size)
 {
 	int	i;
 	int	j;

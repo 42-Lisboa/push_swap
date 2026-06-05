@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_medium.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/04 21:28:54 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/04 21:57:19 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest);
 	fixed_data_size = data->size;
 	while (bucket_start < fixed_data_size)
 	{
-		counter += send_to_bucket(data, data_b, sorted[bucket_start], sorted[bucket_end]);
+		counter += send_to_bucket(
+			data,
+			data_b,
+			sorted[bucket_start],
+			sorted[bucket_end]
+		);
 		bucket_start = bucket_end + 1;
 		bucket_end = bucket_start + bucket_size - 1;
 		if (bucket_end > data->size - 1)
@@ -45,24 +50,27 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest);
 } */
 int	strategy_medium(t_array *data, t_array *data_b)
 {
-	int *sorted;
-	int fixed_data_size;
-	int	bucket_size;
+	int	*sorted;
+	int	fixed_data_size;
 	int	bucket_start;
 	int	bucket_end;
 	int	counter;
 
 	counter = 0;
 	bucket_start = 0;
-	bucket_size = ft_sqrt(data->size);
-	bucket_end = bucket_size - 1;
-	sorted = sort_copy(copy_values(data->values, data->size), data->size);
 	fixed_data_size = data->size;
+	bucket_end = ft_sqrt(fixed_data_size) - 1;
+	sorted = sort_copy(copy_values(data->values, data->size), data->size);
 	while (bucket_start < fixed_data_size)
 	{
-		counter += send_to_bucket(data, data_b, sorted[bucket_start], sorted[bucket_end]);
+		counter += send_to_bucket(
+				data,
+				data_b,
+				sorted[bucket_start],
+				sorted[bucket_end]
+				);
 		bucket_start = bucket_end + 1;
-		bucket_end = bucket_start + bucket_size - 1;
+		bucket_end = bucket_start + ft_sqrt(fixed_data_size) - 1;
 		if (bucket_end > data->size - 1)
 			bucket_end = bucket_start;
 	}
@@ -72,7 +80,7 @@ int	strategy_medium(t_array *data, t_array *data_b)
 	return (free(sorted), counter);
 }
 
-int is_in_bucket(int value, int min, int max)
+int	is_in_bucket(int value, int min, int max)
 {
 	return (value >= min && value <= max);
 }
@@ -100,7 +108,7 @@ static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max)
 {
 	int	i;
 	int	j;
-	int fixed_data_size;
+	int	fixed_data_size;
 	int	counter;
 	int	moves;
 
@@ -146,7 +154,7 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest)
 	return (counter);
 }
 
-void	print_stack(char *name, t_array *s)
+/* void	print_stack(char *name, t_array *s)
 {
 	ft_printf("%s: ", name);
     for (int i = 0; i < s->size; i++)
@@ -155,9 +163,9 @@ void	print_stack(char *name, t_array *s)
         ft_printf("%d ", s->values[idx]);
     }
     ft_printf("\n");
-}
+} */
 
-int main(void)
+/* int main(void)
 {
 	// SMALL STACK 2 NUMBERS 
 	// t_array data;
@@ -295,3 +303,4 @@ int main(void)
 	ft_printf("Total real de movimentos: %d\n", counter);
 	return (0);
  }
+ */
