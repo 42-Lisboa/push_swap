@@ -6,7 +6,7 @@
 /*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:59:25 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/05 14:59:36 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/05 16:46:50 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int compute_disorder(t_array *data)
 			total_pairs++;
 			if (data->values[i] > data->values[j])
 				mistakes += 1;
+			j++;
 		}
+		i++;
 	}
 	return (mistakes / total_pairs);
 }

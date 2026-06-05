@@ -6,7 +6,7 @@
 /*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 10:52:22 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/05 15:06:31 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/05 16:48:57 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,11 @@ int	movements_next_bucket_val(t_array *src, int min, int max)
 	return (-1);
 }
 
-int	movements_next_radix_val(t_array *src_indexed, int bit)
+int	movements_next_radix_val(t_array *src, int bit)
 {
-	
+	// TO DO
 }
+
 
 /* 
 static void print_stack(char *name, t_array *s)
