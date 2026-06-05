@@ -21,34 +21,39 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 ## Development History & Last Changes
 
 **Phase 1: Project Setup & Parsing**
-- [x] Project initialization and initial data structure setup *by jalves & jpastolfi*
-- [x] Implemented parsing logic, flags struct (`t_flags`), and edge case validation (e.g., `-`, `+`, `--adap`) *by jalves & jpastolfi*
-- [x] Fixed syntax errors (`ft_strlen` brace) and refactored string/number conversion using `printf_fd` and a custom `atol` *by jalves*
+- [x] 🟣 Project initialization and initial data structure setup
+- [x] 🟣 Implemented parsing logic, flags struct (`t_flags`), and edge case validation (e.g., `-`, `+`, `--adap`)
+- [x] 🟢 Fixed syntax errors (`ft_strlen` brace) and refactored string/number conversion using `printf_fd` and a custom `atol`
 
 **Phase 2: Stack Operations Implementation**
-- [x] Implemented `push` (`pa`, `pb`) operations and integrated `capacity` into data structures *by jpastolfi*
-- [x] Implemented `swap` operations with static functions for cleaner code *by jalves*
-- [x] Implemented `rotate` and `reverse rotate` operations *by jalves & jpastolfi*
-- [x] Added detailed comments to all stack operations *by jpastolfi*
+- [x] 🔵 Implemented `push` (`pa`, `pb`) operations and integrated `capacity` into data structures
+- [x] 🟢 Implemented `swap` operations with static functions for cleaner code
+- [x] 🟣 Implemented `rotate` and `reverse rotate` operations
+- [x] 🔵 Added detailed comments to all stack operations
 
 **Phase 3: Dispatcher & Simple Algorithm (Selection Sort & Small Stacks)**
-- [x] Created the dispatcher logic to route algorithms based on stack size *by jpastolfi*
-- [x] Developed the `strategy_utils` for small stack sorting (2 to 5 numbers) *by jpastolfi*
-- [x] Built the initial logic, merged selection sort concepts, and finished the `strategy_simple` algorithm *by jalves & jpastolfi*
-- [x] Set up the testing environment for small stacks and performance checks (100/500 numbers) *by jalves*
+- [x] 🔵 Created the dispatcher logic to route algorithms based on stack size
+- [x] 🔵 Developed the `strategy_utils` for small stack sorting (2 to 5 numbers)
+- [x] 🟣 Built the initial logic, merged selection sort concepts, and finished the `strategy_simple` algorithm
+- [x] 🟢 Set up the testing environment for small stacks and performance checks (100/500 numbers)
 
 **Phase 4: Medium Algorithm (Bucket Sort)**
-- [x] Added custom `ft_sqrt` function to `libft` for dynamic chunk size calculations *by jalves*
-- [x] Drafted initial logic for chunk sorting within `strategy_medium.c` *by jpastolfi*
-- [x] Refactored `strategy_medium` and implemented move-reduction logic to improve the overall number of steps *by jalves*
-- [x] Created and fixed functions to calculate stack disorder and adjusted return types *by jpastolfi*
-- [x] Fixed Norminette issues across the algorithm logic *by jpastolfi*
+- [x] 🟢 Added custom `ft_sqrt` function to `libft` for dynamic chunk size calculations
+- [x] 🔵 Drafted initial logic for chunk sorting within `strategy_medium.c`
+- [x] 🟢 Refactored `strategy_medium` and implemented move-reduction logic to improve the overall number of steps
+- [x] 🔵 Created and fixed functions to calculate stack disorder and adjusted return types
+- [x] 🟢 Added detailed comments to all `strategy_medium` operations
+- [x] 🔵 Fixed Norminette issues across the algorithm logic
 
-**Phase 5: Complex Algorithm (Radix Sort Prep)**
-- [x] Implemented `indexation` (Coordinate Compression) specifically for the Radix complex algorithm *by jalves*
-- [x] Fixed and summarized README for better project tracking and understanding *by jalves*
-- [x] Added detailed comments to all strategy_medium operations *by jalves*
-- [x] Checked norminette on all files *by jalves*
+**Phase 5: Complex Algorithm (Radix Sort)**
+- [x] 🟢 Implemented `indexation` (Coordinate Compression) specifically for the Radix complex algorithm
+- [x] 🟢 Fixed and summarized README for better project tracking and understanding
+- [x] 🟢 Checked norminette on all files
 
 ---
-*Jonathan Alves & Joao Astolfi — Programming Students @ 42*
+### 👨‍💻 Authors & Contributions
+🟢 **Jonathan Alves** (`jalves`)  
+🔵 **João Astolfi** (`jpastolfi`)  
+🟣 **Pair Programming / Both**
+
+*Programming Students @ 42*
