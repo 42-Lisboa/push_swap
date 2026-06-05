@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 10:52:22 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/05 10:57:35 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/05 14:11:24 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	movements_next_bucket_val(t_array *src, int min, int max)
 	return (-1);
 }
 
-int compute_disorder(t_array *data)
+float	compute_disorder(t_array *data)
 {
 	int	mistakes;
 	int	total_pairs;
@@ -110,7 +110,9 @@ int compute_disorder(t_array *data)
 			total_pairs++;
 			if (data->values[i] > data->values[j])
 				mistakes += 1;
+			j++;
 		}
+		i++;
 	}
 	return (mistakes / total_pairs);
 }
