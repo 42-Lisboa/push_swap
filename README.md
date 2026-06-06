@@ -49,6 +49,7 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🟢 Implemented `indexation` (Coordinate Compression) specifically for the Radix complex algorithm
 - [x] 🟢 Fixed and summarized README for better project tracking and understanding
 - [x] 🟢 Checked norminette on all files
+- [x] 🟢 Implemented new function get_max_bits
 
 ---
 ### 👨‍💻 Authors & Contributions
