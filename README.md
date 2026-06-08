@@ -47,9 +47,11 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 
 **Phase 5: Complex Algorithm (Radix Sort)**
 - [x] 🟢 Implemented `indexation` (Coordinate Compression) specifically for the Radix complex algorithm
-- [x] 🟢 Fixed and summarized README for better project tracking and understanding
-- [x] 🟢 Checked norminette on all files
+- [x] 🟢 Fixed norminette and summarized README for better project tracking and understanding
 - [x] 🟢 Implemented new function get_max_bits
+
+**Phase 6: Adaptive Algorithm**
+- [x] 🔵 Created function to calculate the disorder of the array
 
 ---
 ### 👨‍💻 Authors & Contributions

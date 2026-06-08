@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_medium.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/05 17:53:31 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/08 13:38:54 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest);
 int	strategy_medium(t_array *data, t_array *data_b)
 {
 	int	*sorted;
-	int	fixed_data_size;
 	int	bucket_start;
 	int	bucket_end;
 	int	counter;
 
 	counter = 0;
 	bucket_start = 0;
-	fixed_data_size = data->size;
-	bucket_end = ft_sqrt(fixed_data_size) - 1;
+	bucket_end = ft_sqrt(data->capacity) - 1;
 	sorted = sort_copy(copy_values(data->values, data->size), data->size);
-	while (bucket_start < fixed_data_size)
+	while (bucket_start < data->capacity)
 	{
 		counter += send_to_bucket(data, data_b,
 				sorted[bucket_start], sorted[bucket_end]);
 		bucket_start = bucket_end + 1;
-		bucket_end = bucket_start + ft_sqrt(fixed_data_size) - 1;
+		bucket_end = bucket_start + ft_sqrt(data->capacity) - 1;
 		if (bucket_end > data->size - 1)
 			bucket_end = bucket_start;
 	}
@@ -62,14 +60,12 @@ static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max)
 {
 	int	i;
 	int	j;
-	int	fixed_data_size;
 	int	counter;
 	int	moves;
 
 	j = 0;
 	counter = 0;
-	fixed_data_size = data->size;
-	while (j++ < fixed_data_size)
+	while (j++ < data->capacity)
 	{
 		i = 0;
 		moves = movements_next_bucket_val(data, min, max);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 10:52:22 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/05 17:56:19 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/08 13:46:36 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,6 @@ int	movements_next_bucket_val(t_array *src, int min, int max)
 	return (-1);
 }
 
-// TO DO
-int	movements_next_radix_val(t_array *src, int bit)
-{
-}
 /* 
 static void print_stack(char *name, t_array *s)
 {
