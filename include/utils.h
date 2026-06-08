@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:52 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/04 21:25:53 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/08 15:51:46 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ typedef struct s_flags
 	int	bench;
 }	t_flags;
 
-typedef void	(*t_sort_fn)(t_flags flags, t_array *data, t_array *data_b);
+typedef int	(*t_sort_fn)(t_array *data, t_array *data_b);
 
 void	is_valid_argc(int argc, char **argv);
-t_array	*is_valid_number(int argc, char **argv, int start);
+t_array	*validate_number(int argc, char **argv, int start);
 void	has_duplicates(t_array *data);
 int		parse_all_flags(int argc, char **argv, t_flags *flag);
 int		get_strategy_idx(char *argv);
 void	end(int error);
-void	dispatcher(t_flags flags, t_array *structure);
+int		dispatcher(t_flags flags, t_array *structure);
 int		movements_to_smallest(t_array *data);
 int		movements_to_greatest(t_array *data_b);
 int		movements_next_bucket_val(t_array *src, int min, int max);

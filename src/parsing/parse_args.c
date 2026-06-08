@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/03 16:27:00 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/08 15:25:26 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ void	is_valid_argc(int argc, char **argv)
 {
 	if (argc == 1)
 		exit(0);
-	/* if (parse_all_flags(argv) == argc)
-		end(ERR_ARG); */ // mandar para o push_swap com os inputs corretos
 }
 // 17. Validation of the minimum number of argv;
 // 19. Validation of the minimum argv when there's a flag;
 
 static void	fill_data(t_array *data, int argc, char **argv, int i);
 
-t_array	*is_valid_number(int argc, char **argv, int start)
+t_array	*validate_number(int argc, char **argv, int start)
 {
 	t_array	*data;
 
@@ -67,6 +65,7 @@ static void	fill_data(t_array *data, int argc, char **argv, int start)
 		start++;
 		j++;
 		data->size = j;
+		data->capacity = data->size;
 	}
 }
 // 56. First character of each argv cannot be different from sign or digit;

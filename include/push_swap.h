@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:38 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/04 16:34:08 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/08 14:58:14 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int	rrr(t_array *data, t_array *data_b);
 
 int	strategy_simple(t_array *data, t_array *data_b);
 int	strategy_medium(t_array *data, t_array *data_b);
+int	strategy_complex(t_array *data, t_array *data_b);
+int	strategy_adaptive(t_array *data, t_array *data_b);
 
 #endif

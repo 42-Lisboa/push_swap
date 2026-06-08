@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_simple.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/04 20:30:05 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/08 14:35:57 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	strategy_simple(t_array *data, t_array *data_b)
 	int	counter;
 
 	counter = 0;
-	if (data->size <= 5)
-		return (swap_small_stack(data, data_b));
 	while (data->size > 0)
 	{
 		moves = movements_to_smallest(data);
