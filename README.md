@@ -11,9 +11,9 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] Small sort logic (2 to 5 numbers)
 - [x] Make the algorithms return the exact number of operations cleanly
 - [x] Large sort algorithm implementation on medium strategy (Bucket Sort)
-- [ ] Move reduction and efficiency tweaking (Targeting < 5500 moves for 500)
-- [ ] Radix Sort implementation (Bitwise) for ultimate efficiency on 500 numbers
-- [ ] Implement adaptive strategy based on the stack disorder index
+- [x] Move reduction and efficiency tweaking (Targeting < 5500 moves for 500)
+- [x] Radix Sort implementation (Bitwise) for ultimate efficiency on 500 numbers
+- [x] Implement adaptive strategy based on the stack disorder index
 - [ ] Create and implement logic for bench flag
 - [ ] Implement new Makefile
 - [ ] Check all files
@@ -49,9 +49,13 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🟢 Implemented `indexation` (Coordinate Compression) specifically for the Radix complex algorithm
 - [x] 🟢 Fixed norminette and summarized README for better project tracking and understanding
 - [x] 🟢 Implemented new function get_max_bits
+- [x] 🔵 Refactored `push_swap.c` and main execution flow to prepare integration with complex and adaptive strategies
+- [x] 🟢 Continued Radix Sort groundwork by implementing bit-count calculation (`get_max_bits`) and integrating the required structures for bitwise processing
 
 **Phase 6: Adaptive Algorithm**
 - [x] 🔵 Created function to calculate the disorder of the array
+- [x] 🔵 Expanded adaptive strategy logic and improved algorithm selection preparation based on stack disorder analysis
+- [x] 🟢 Refactored adaptive strategy implementation and fixed Norminette issues across related files
 
 ---
 ### 👨‍💻 Authors & Contributions
