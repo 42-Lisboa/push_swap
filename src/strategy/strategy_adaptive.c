@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_adaptive.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:59:25 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/09 17:33:31 by jastolfi         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	strategy_adaptive(t_array *data, t_array *data_b, t_count *count_ops)
+int	strategy_adaptive(t_array *data, t_array *data_b, t_ops *count_op)
 {
 	float	disorder;
 
 	disorder = compute_disorder(data);
 	if (data->size <= 5)
-		return (swap_small_stack(data, data_b, count_ops));
+		return (swap_small_stack(data, data_b, count_op));
 	if (disorder < 0.2)
-		return (strategy_simple(data, data_b, count_ops));
+		return (strategy_simple(data, data_b, count_op));
 	else if (disorder >= 0.2 && disorder < 0.5)
-		return (strategy_medium(data, data_b, count_ops));
+		return (strategy_medium(data, data_b, count_op));
 	else if (disorder >= 0.5)
-		return (strategy_complex(data, data_b, count_ops));
+		return (strategy_complex(data, data_b, count_op));
 	return (0);
 }
 // 21. For small stacks of 5 or fewer, use a dedicated small-stack handler;

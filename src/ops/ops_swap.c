@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 16:51:54 by jastolfi         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static void	op_swap(t_array *data);
 
-int	sa(t_array *data, t_count *count_ops)
+int	sa(t_array *data, t_ops *count_op)
 {
 	if (data->size <= 1)
 		return (0);
 	op_swap(data);
 	ft_printf("sa\n");
-	count_ops->sa_count++;
+	count_op->sa++;
 	return (1);
 }
 
-int	sb(t_array *data_b, t_count *count_ops)
+int	sb(t_array *data_b, t_ops *count_op)
 {
 	int	tmp;
 
@@ -32,11 +32,11 @@ int	sb(t_array *data_b, t_count *count_ops)
 		return (0);
 	op_swap(data_b);
 	ft_printf("sb\n");
-	count_ops->sb_count++;
+	count_op->sb++;
 	return (1);
 }
 
-int	ss(t_array *data, t_array *data_b, t_count *count_ops)
+int	ss(t_array *data, t_array *data_b, t_ops *count_op)
 {
 	int	tmp;
 
@@ -47,7 +47,7 @@ int	ss(t_array *data, t_array *data_b, t_count *count_ops)
 	if (data_b->size > 1)
 		op_swap(data_b);
 	ft_printf("ss\n");
-	count_ops->ss_count++;
+	count_op->ss++;
 	return (1);
 }
 

@@ -44,6 +44,7 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🔵 Created and fixed functions to calculate stack disorder and adjusted return types
 - [x] 🟢 Added detailed comments to all `strategy_medium` operations
 - [x] 🔵 Fixed Norminette issues across the algorithm logic
+- [x] 🟢 Refactored logic of min and max from strategy_medium to and array of integers with two numbers, so it is correct with the norm about limit parameters on function
 
 **Phase 5: Complex Algorithm (Radix Sort)**
 - [x] 🟢 Implemented `indexation` (Coordinate Compression) specifically for the Radix complex algorithm
@@ -59,6 +60,13 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 
 **Phase 7: Benchmark Functionality**
 - [x] 🟣 Implemented main logic for benchmark functionality. Changed operations logic and created struct to keep track of operations count
+- [x] 🟣 Implemented new function on libft to print also float numbers
+- [x] 🟣 Finished benchmark main implemetation
+- [x] 🟢 Fixed norminette in all of the files, also replaced some variables names
+- [ ] ⚫ Change ops logic to hide functions when bench is off
+- [ ] ⚫ Create Makefile
+- [ ] ⚫ Test final program on project official testers
+- [ ] ⚫ Check all files: names, comments and norminette
 
 ---
 ### 👨‍💻 Authors & Contributions

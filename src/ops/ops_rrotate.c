@@ -1,56 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_rotate.c                                       :+:      :+:    :+:   */
+/*   ops_rrotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 16:50:21 by jastolfi         ###   ########.fr       */
+/*   Created: 2026/05/28 11:06:10 by jpastolfi         #+#    #+#             */
+/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void	op_rotate(t_array *data);
+static void	op_rrotate(t_array *data);
 
-int	ra(t_array *data, t_count *count_ops)
+int	rra(t_array *data, t_ops *count_op)
 {
-	op_rotate(data);
-	ft_printf("ra\n");
-	count_ops->ra_count++;
+	op_rrotate(data);
+	ft_printf("rra\n");
+	count_op->rra++;
 	return (1);
 }
 
-int	rb(t_array *data_b, t_count *count_ops)
+int	rrb(t_array *data_b, t_ops *count_op)
 {
-	op_rotate(data_b);
-	ft_printf("rb\n");
-	count_ops->rb_count++;
+	op_rrotate(data_b);
+	ft_printf("rrb\n");
+	count_op->rrb++;
 	return (1);
 }
 
-int	rr(t_array *data, t_array *data_b, t_count *count_ops)
+int	rrr(t_array *data, t_array *data_b, t_ops *count_op)
 {
-	op_rotate(data);
-	op_rotate(data_b);
-	ft_printf("rr\n");
-	count_ops->rr_count++;
+	op_rrotate(data);
+	op_rrotate(data_b);
+	ft_printf("rrr\n");
+	count_op->rrr++;
 	return (1);
 }
 
-static void	op_rotate(t_array *data)
+static void	op_rrotate(t_array *data)
 {
 	int	tmp;
 
 	if (data->size <= 1)
 		return ;
-	tmp = data->values[data->head];
-	data->head = (data->head + 1) % data->capacity;
-	data->values[((data->head + data->size -1) % data->capacity)] = tmp;
+	tmp = data->values[(data->head + data->size - 1) % data->capacity];
+	if (data->head == 0)
+		data->head = data->capacity - 1;
+	else
+		data->head--;
+	data->values[data->head] = tmp;
 }
-// 47. To find the stack last position after increasing the size->head
-// 47. And save the previous first value (tmp) as now the last value
+// 45. To find and save the stack last value before moving the head backwards
+// 50. And save that previous last value (tmp) as now the first value
 /*
 void	print_stack(char *name, t_array *s)
 {
@@ -77,9 +80,9 @@ int main(void)
     printf("--- ANTES ---\n");
     print_stack("STACK A", &data);
 
-    printf("--- APLICANDO ra ---\n");
+    printf("--- APLICANDO rra ---\n");
 
-    ra(&data);
+    rra(&data);
     print_stack("\nSTACK A", &data);
 
     free(data.values);

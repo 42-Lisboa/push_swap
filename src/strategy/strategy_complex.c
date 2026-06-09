@@ -1,84 +1,112 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strategy_simple.c                                  :+:      :+:    :+:   */
+/*   strategy_complex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 16:43:03 by jastolfi         ###   ########.fr       */
+/*   Created: 2026/06/05 10:41:06 by jpastolfi         #+#    #+#             */
+/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	strategy_simple(t_array *data, t_array *data_b, t_count *count_ops)
+static void	indexation(t_array *src, int *sorted_copy);
+static int	get_max_bits(t_array *src);
+
+int	strategy_complex(t_array *data, t_array *data_b, t_ops *count_op)
 {
-	int	moves;
-	int	i;
+	int	*sorted;
+	int	iterations;
 	int	counter;
+	int	i;
+	int	j;
 
+	i = -1;
 	counter = 0;
-	while (data->size > 0)
+	sorted = sort_copy(copy_values(data->values, data->size), data->size);
+	indexation(data, sorted);
+	iterations = get_max_bits(data);
+	while (iterations > i++)
 	{
-		moves = movements_to_smallest(data);
-		i = 0;
-		if (moves <= data->size / 2)
-			while (i++ < moves)
-				counter += ra(data, count_ops);
-		else
-			while (i++ < data->size - moves)
-				counter += rra(data, count_ops);
-		counter += pb(data, data_b, count_ops);
+		j = 0;
+		while (j++ < data->capacity)
+		{
+			if (((data->values[data->head] >> i) & 1) == 0)
+				counter += pb(data, data_b, count_op);
+			else
+				counter += ra(data, count_op);
+		}
+		while (data_b->size > 0)
+			counter += pa(data_b, data, count_op);
 	}
-	while (data_b->size > 0)
-		counter += pa(data_b, data, count_ops);
-	return (counter);
+	return (free (sorted), counter);
 }
-// 26. Find logical position of smallest element;
-// 28. If smallest is in first half, rotate forward;
-// 29. Rotate until smallest reaches the top;
-// 31. If smallest is in second half, rotate backward;
-// 32. Use shortest path with reverse rotations;
-// 34. Push smallest element to stack B;
+// 28. Create a sorted copy to use as reference for index mapping;
+// 29. Replace each value in Stack A with its sorted position index;
+// 30. Calculate how many bit passes are needed based on the largest index;
+// 31. Iterate once per bit, from least significant to most significant;
+// 34. Process every element currently in Stack A;
+// 36. If the current bit of the top element is 0, push it to Stack B;
+// 38. If the current bit is 1, rotate it to the back of Stack A;
+// 41. After each bit pass, pull all elements from Stack B back to Stack A;
+// 44. Free the sorted copy and return the total move count;
 
-int	movements_to_smallest(t_array *data)
+static void	indexation(t_array *src, int *sorted_copy)
 {
 	int	i;
-	int	count_moves;
-	int	smallest_val;
+	int	j;
 	int	capacity_idx;
 
-	smallest_val = data->values[data->head];
-	count_moves = 0;
-	i = 1;
-	while (i < data->size)
+	i = 0;
+	while (i < src->size)
 	{
-		capacity_idx = (data->head + i) % data->capacity;
-		if (data->values[capacity_idx] < smallest_val)
+		j = 0;
+		capacity_idx = (src->head + i) % src->capacity;
+		while (j < src->size)
 		{
-			smallest_val = data->values[capacity_idx];
-			count_moves = i;
+			if (src->values[capacity_idx] == sorted_copy[j])
+			{
+				src->values[capacity_idx] = j;
+				break ;
+			}
+			j++;
 		}
 		i++;
 	}
-	return (count_moves);
 }
-// 54. Start assuming first element is the smallest;
-// 57. Loop through all logical positions;
-// 62. Update smallest value when a smaller one is found;
-// 59. Save the logical position of smallest value;
-// 67. Return amount of moves to reach smallest element;
+// 63. Iterate over each element in the stack using circular index arithmetic;
+// 69. Search for the element's position in the sorted reference array;
+// 71. Replace the element's value with its rank index in sorted order;
+
+static int	get_max_bits(t_array *src)
+{
+	int	greatest_idx;
+	int	max_bits;
+
+	max_bits = 0;
+	greatest_idx = src->size - 1;
+	while (greatest_idx > 0)
+	{
+		greatest_idx >>= 1;
+		max_bits++;
+	}
+	return (max_bits);
+}
+// 89. Start from the highest possible index, which is size minus one;
+// 92. Shift right until the value reaches zero, counting each shift;
+// 95. Return the number of bits needed to represent the largest index;
 /*
 void	print_stack(char *name, t_array *s)
 {
 	ft_printf("%s: ", name);
-    for (int i = 0; i < s->size; i++)
-    {
-        int idx = (s->head + i) % s->capacity;
-        ft_printf("%d ", s->values[idx]);
-    }
-    ft_printf("\n");
+	for (int i = 0; i < s->size; i++)
+	{
+		int idx = (s->head + i) % s->capacity;
+		ft_printf("%d ", s->values[idx]);
+	}
+	ft_printf("\n");
 }
 
 int main(void)
@@ -207,16 +235,15 @@ int main(void)
 
 	int	counter;
 
-	// Simple Strategy - Selection Sorting Adapted
+	// Complex Strategy - Radix Binary (LSD) Sorting Adapted
 	print_stack("Stack A", &data);
 	ft_printf("\n");
 	print_stack("Stack B", &data_b);
-	counter = strategy_simple(&data, &data_b);
+	counter = strategy_complex(&data, &data_b);
 	ft_printf("\n-----------------------------------\n");
 	print_stack("Stack A", &data);
 	ft_printf("\n");
 	print_stack("Stack B", &data_b);
 	ft_printf("Total real de movimentos: %d\n", counter);
-
 	return (0);
- } */
+ }*/

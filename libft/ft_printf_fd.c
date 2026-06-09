@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:15:34 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/03 17:40:43 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 20:48:52 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ static int	if_print_fd(char c, va_list *args, int fd)
 		total_print += ft_putpointer_fd(va_arg(*args, unsigned long), fd);
 	else if (c == '%')
 		total_print += ft_putchar_fd('%', fd);
+	else if (c == 'f')
+		total_print += ft_putfloat_fd(va_arg(*args, double), fd);
 	return (total_print);
 }

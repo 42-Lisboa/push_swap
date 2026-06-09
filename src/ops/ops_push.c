@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 17:34:31 by jastolfi         ###   ########.fr       */
+/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void	op_push(t_array *src, t_array *dest, t_count *count_ops);
+static void	op_push(t_array *src, t_array *dest, t_ops *count_op);
 
-int	pa(t_array *data_b, t_array *data, t_count *count_ops)
+int	pa(t_array *data_b, t_array *data, t_ops *count_op)
 {
 	if (data_b->size == 0 || data->size == data->capacity)
 		return (0);
-	op_push(data_b, data, count_ops);
+	op_push(data_b, data, count_op);
 	ft_printf("pa\n");
-	count_ops->pa_count++;
+	count_op->pa++;
 	return (1);
 }
 
-int	pb(t_array *data, t_array *data_b, t_count *count_ops)
+int	pb(t_array *data, t_array *data_b, t_ops *count_op)
 {
 	if (data->size == 0 || data_b->size == data_b->capacity)
 		return (0);
-	op_push(data, data_b, count_ops);
+	op_push(data, data_b, count_op);
 	ft_printf("pb\n");
-	count_ops->pb_count++;
+	count_op->pb++;
 	return (1);
 }
 
-static void	op_push(t_array *src, t_array *dest, t_count *count_ops)
+static void	op_push(t_array *src, t_array *dest, t_ops *count_op)
 {
 	dest->size++;
 	dest->head = (dest->head - 1 + dest->capacity) % dest->capacity;

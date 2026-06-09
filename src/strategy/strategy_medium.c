@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_medium.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 16:44:33 by jastolfi         ###   ########.fr       */
+/*   Updated: 2026/06/09 21:14:12 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max, t_count *count_ops);
-static int	sort_and_push_reverse(t_array *src, t_array *dest, t_count *count_ops);
+static int	send_to_bucket(t_array *data, t_array *data_b, int *bkt, t_ops *c);
+static int	sort_and_push_reverse(t_array *src, t_array *dest, t_ops *c);
 
-int	strategy_medium(t_array *data, t_array *data_b, t_count *count_ops)
+int	strategy_medium(t_array *data, t_array *data_b, t_ops *c)
 {
 	int	*sorted;
 	int	bucket_start;
 	int	bucket_end;
 	int	counter;
+	int	bkt[2];
 
 	counter = 0;
 	bucket_start = 0;
@@ -28,16 +29,17 @@ int	strategy_medium(t_array *data, t_array *data_b, t_count *count_ops)
 	sorted = sort_copy(copy_values(data->values, data->size), data->size);
 	while (bucket_start < data->capacity)
 	{
-		counter += send_to_bucket(data, data_b,
-				sorted[bucket_start], sorted[bucket_end], count_ops);
+		bkt[0] = sorted[bucket_start];
+		bkt[1] = sorted[bucket_end];
+		counter += send_to_bucket(data, data_b, bkt, c);
 		bucket_start = bucket_end + 1;
 		bucket_end = bucket_start + ft_sqrt(data->capacity) - 1;
 		if (bucket_end > data->size - 1)
 			bucket_end = bucket_start;
 	}
-	counter += sort_and_push_reverse(data_b, data, count_ops);
+	counter += sort_and_push_reverse(data_b, data, c);
 	while (data_b->size > 0)
-		counter += pa(data_b, data, count_ops);
+		counter += pa(data_b, data, c);
 	return (free(sorted), counter);
 }
 // 29. Calculate initial bucket size using the square root of the total size;
@@ -56,7 +58,7 @@ int	is_in_bucket(int value, int min, int max)
 }
 // 55. Function to check if a value falls within the target bucket range;
 
-static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max, t_count *count_ops)
+static int	send_to_bucket(t_array *data, t_array *data_b, int *bkt, t_ops *c)
 {
 	int	i;
 	int	j;
@@ -68,16 +70,16 @@ static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max, t_co
 	while (j++ < data->capacity)
 	{
 		i = 0;
-		moves = movements_next_bucket_val(data, min, max);
+		moves = movements_next_bucket_val(data, bkt[0], bkt[1]);
 		if (moves == -1)
 			break ;
 		if (moves <= data->size / 2)
 			while (i++ < moves)
-				counter += ra(data, count_ops);
+				counter += ra(data, c);
 		else
 			while (i++ < data->size - moves)
-				counter += rra(data, count_ops);
-		counter += pb(data, data_b, count_ops);
+				counter += rra(data, c);
+		counter += pb(data, data_b, c);
 	}
 	return (counter);
 }
@@ -88,7 +90,7 @@ static int	send_to_bucket(t_array *data, t_array *data_b, int min, int max, t_co
 // 81. If target is in the second half, rotate backward for efficiency;
 // 84. Push the found target element to Stack B;
 
-static int	sort_and_push_reverse(t_array *src, t_array *dest, t_count *count_ops)
+static int	sort_and_push_reverse(t_array *src, t_array *dest, t_ops *c)
 {
 	int	moves;
 	int	i;
@@ -101,11 +103,11 @@ static int	sort_and_push_reverse(t_array *src, t_array *dest, t_count *count_ops
 		i = 0;
 		if (moves <= src->size / 2)
 			while (i++ < moves)
-				counter += rb(src, count_ops);
+				counter += rb(src, c);
 		else
 			while (i++ < src->size - moves)
-				counter += rrb(src, count_ops);
-		counter += pa(src, dest, count_ops);
+				counter += rrb(src, c);
+		counter += pa(src, dest, c);
 	}
 	return (counter);
 }
