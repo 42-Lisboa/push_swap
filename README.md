@@ -2,7 +2,7 @@
 
 > **🚧 Work In Progress 🚧**
 
-A 42 school algorithmic project focused on sorting data on a stack with a limited set of instructions, using the absolute minimum number of moves. 
+A 42 school algorithmic project focused on sorting data on a stack with a limited set of instructions, using the absolute minimum number of moves.
 
 ## Current Status
 - [x] Input parsing and error validation, also for flags
@@ -57,10 +57,13 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🔵 Expanded adaptive strategy logic and improved algorithm selection preparation based on stack disorder analysis
 - [x] 🟢 Refactored adaptive strategy implementation and fixed Norminette issues across related files
 
+**Phase 7: Benchmark Functionality**
+- [x] 🟣 Implemented main logic for benchmark functionality. Changed operations logic and created struct to keep track of operations count
+
 ---
 ### 👨‍💻 Authors & Contributions
-🟢 **Jonathan Alves** (`jalves`)  
-🔵 **João Astolfi** (`jpastolfi`)  
+🟢 **Jonathan Alves** (`jalves`)
+🔵 **João Astolfi** (`jpastolfi`)
 🟣 **Pair Programming / Both**
 
 *Programming Students @ 42*
