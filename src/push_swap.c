@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/08 15:52:31 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 17:34:58 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,29 @@ int	main(int argc, char **argv)
 {
 	t_flags	flags;
 	t_array	*data;
-	t_array	*data_b;
+	t_count	*count_ops;
 	int		start;
+	float	disorder;
 
-	// 1. Validar se há argumentos suficientes (podes manter a tua função)
 	is_valid_argc(argc, argv);
-	
-	// 2. Testar o parser de flags e capturar o índice do primeiro número
 	start = parse_all_flags(argc, argv, &flags);
-	if (start == argc)
-		end(ERR_ARG);
-	
-	// 3. Imprimir os resultados para verificação no terminal
 	data = validate_number(argc, argv, start);
 	has_duplicates(data);
-	ft_printf("--------------------- Teste do Parser de Flags --------------------\n");
-	ft_printf("Estratégia (0=simple, 1=medium, 2=complex, 3=adaptive): >>>>> %d\n", flags.strategy);
-	ft_printf("Modo Benchmark (0=off, 1=on): %d\n", flags.bench);
-	ft_printf("Os números começam no argv[%d]\n", start);
-	ft_printf("-------------------------------------------------------------------\n\n");
-	ft_printf("Número de operações: %d\n", dispatcher(flags, data));
+	count_ops = malloc(sizeof(t_count));
+	if (!count_ops)
+		end(ERR_MALLOC);
+	count_ops_to_zero(count_ops);
+	disorder = compute_disorder(data);
+	count_ops->total_count = dispatcher(flags, data, count_ops);
+	if (flags.bench)
+		display_bench(flags, data, count_ops, disorder);
 	return (0);
 }
-int	dispatcher(t_flags flags, t_array *data)
+// 00. Validar se há argumentos suficientes
+// 00. Testar o parser de flags e capturar o índice do primeiro número
+// 00. Imprimir os resultados para verificação no terminal
+
+int	dispatcher(t_flags flags, t_array *data, t_count *count_ops)
 {
 	t_array		*data_b;
 	int			*number_b;
@@ -50,15 +50,52 @@ int	dispatcher(t_flags flags, t_array *data)
 	number_b = malloc(sizeof(int) * data->capacity);
 	if (!number_b)
 		end(ERR_MALLOC);
-	ft_bzero(number_b, sizeof(int) * data->capacity);
 	data_b->values = number_b;
 	data_b->size = 0;
 	data_b->capacity = data->capacity;
 	data_b->head = 0;
-	data->head = 0;
 	fns[0] = strategy_simple;
 	fns[1] = strategy_medium;
 	fns[2] = strategy_complex;
 	fns[3] = strategy_adaptive;
-	return (fns[flags.strategy](data, data_b));
+	return (fns[flags.strategy](data, data_b, count_ops));
+}
+
+void display_bench(t_flags flags, t_array *data, t_count *count_ops, float disorder)
+{
+	char *flags_titles[4];
+
+	flags_titles[0] = "Simple";
+	flags_titles[1] = "Medium";
+	flags_titles[2] = "Complex";
+	flags_titles[3] = "Adaptive";
+	ft_printf("[bench] disorder: %d%%\n", (int)(disorder * 100));
+	ft_printf("[bench] total_ops: %d\n", count_ops->total_count);
+	ft_printf("[bench] sa: %d  ", count_ops->sa_count);
+	ft_printf("[bench] sb: %d  ", count_ops->sb_count);
+	ft_printf("[bench] ss: %d  ", count_ops->ss_count);
+	ft_printf("[bench] pa: %d  ", count_ops->pa_count);
+	ft_printf("[bench] pb: %d\n", count_ops->pb_count);
+	ft_printf("[bench] ra: %d  ", count_ops->ra_count);
+	ft_printf("[bench] rb: %d  ", count_ops->rb_count);
+	ft_printf("[bench] rr: %d  ", count_ops->rr_count);
+	ft_printf("[bench] rra: %d  ", count_ops->rra_count);
+	ft_printf("[bench] rrb: %d  ", count_ops->rrb_count);
+	ft_printf("[bench] rrr: %d\n", count_ops->rrr_count);
+}
+
+void count_ops_to_zero(t_count *count_ops)
+{
+	count_ops->sa_count = 0;
+	count_ops->sb_count = 0;
+	count_ops->ss_count = 0;
+	count_ops->pa_count = 0;
+	count_ops->pb_count = 0;
+	count_ops->ra_count = 0;
+	count_ops->rb_count = 0;
+	count_ops->rr_count = 0;
+	count_ops->rra_count = 0;
+	count_ops->rrb_count = 0;
+	count_ops->rrr_count = 0;
+	count_ops->total_count = 0;
 }

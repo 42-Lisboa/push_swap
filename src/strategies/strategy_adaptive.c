@@ -3,30 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_adaptive.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:59:25 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/08 16:01:40 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 17:33:31 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static float	compute_disorder(t_array *data);
-
-int	strategy_adaptive(t_array *data, t_array *data_b)
+int	strategy_adaptive(t_array *data, t_array *data_b, t_count *count_ops)
 {
 	float	disorder;
 
 	disorder = compute_disorder(data);
 	if (data->size <= 5)
-		return (swap_small_stack(data, data_b));
+		return (swap_small_stack(data, data_b, count_ops));
 	if (disorder < 0.2)
-		return (strategy_simple(data, data_b));
+		return (strategy_simple(data, data_b, count_ops));
 	else if (disorder >= 0.2 && disorder < 0.5)
-		return (strategy_medium(data, data_b));
+		return (strategy_medium(data, data_b, count_ops));
 	else if (disorder >= 0.5)
-		return (strategy_complex(data, data_b));
+		return (strategy_complex(data, data_b, count_ops));
 	return (0);
 }
 // 21. For small stacks of 5 or fewer, use a dedicated small-stack handler;
@@ -35,7 +33,7 @@ int	strategy_adaptive(t_array *data, t_array *data_b)
 // 26. Moderately disordered stacks use the medium bucket-based strategy;
 // 28. Highly disordered stacks use the complex radix-based strategy;
 
-static float	compute_disorder(t_array *data)
+float	compute_disorder(t_array *data)
 {
 	float	mistakes;
 	float	total_pairs;
@@ -45,9 +43,9 @@ static float	compute_disorder(t_array *data)
 	mistakes = 0;
 	total_pairs = 0;
 	i = 0;
-	j = 0;
 	while (i < data->size)
 	{
+		j = i + 1;
 		while (j < data->size)
 		{
 			total_pairs++;

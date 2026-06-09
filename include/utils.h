@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:52 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/08 15:51:46 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 17:15:04 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,23 @@ typedef struct s_flags
 	int	bench;
 }	t_flags;
 
-typedef int	(*t_sort_fn)(t_array *data, t_array *data_b);
+typedef struct s_count
+{
+	int sa_count;
+	int sb_count;
+	int ss_count;
+	int pa_count;
+	int pb_count;
+	int ra_count;
+	int rb_count;
+	int rr_count;
+	int rra_count;
+	int rrb_count;
+	int rrr_count;
+	int total_count;
+}	t_count;
+
+typedef int	(*t_sort_fn)(t_array *data, t_array *data_b, t_count *count_ops);
 
 void	is_valid_argc(int argc, char **argv);
 t_array	*validate_number(int argc, char **argv, int start);
@@ -41,13 +57,15 @@ void	has_duplicates(t_array *data);
 int		parse_all_flags(int argc, char **argv, t_flags *flag);
 int		get_strategy_idx(char *argv);
 void	end(int error);
-int		dispatcher(t_flags flags, t_array *structure);
+int		dispatcher(t_flags flags, t_array *structure, t_count *count_ops);
 int		movements_to_smallest(t_array *data);
 int		movements_to_greatest(t_array *data_b);
 int		movements_next_bucket_val(t_array *src, int min, int max);
 int		is_in_bucket(int value, int min, int max);
-int		swap_small_stack(t_array *data, t_array *data_b);
+int		swap_small_stack(t_array *data, t_array *data_b, t_count *count_ops);
 int		*copy_values(int *numbers, int size);
 int		*sort_copy(int *numbers, int size);
+float	compute_disorder(t_array *data);
+void	count_ops_to_zero(t_count *count_ops);
 
 #endif

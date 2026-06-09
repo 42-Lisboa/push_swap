@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/08 15:25:26 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 16:36:16 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_array	*validate_number(int argc, char **argv, int start)
 		end(ERR_MALLOC);
 	}
 	fill_data(data, argc, argv, start);
+	data->head = 0;
 	return (data);
 }
 // 35. argc - i: we remove from the count - program and the flag
@@ -97,4 +98,4 @@ void	has_duplicates(t_array *data)
 }
 // 46. Loop to stop at the end of int array;
 // 49. Loop to check with the neighbor;
-// 52. If has duplicate, stops immediately 
+// 52. If has duplicate, stops immediately

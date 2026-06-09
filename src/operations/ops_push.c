@@ -3,36 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/29 16:17:25 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/09 17:34:31 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void	op_push(t_array *src, t_array *dest);
+static void	op_push(t_array *src, t_array *dest, t_count *count_ops);
 
-int	pa(t_array *data_b, t_array *data)
+int	pa(t_array *data_b, t_array *data, t_count *count_ops)
 {
 	if (data_b->size == 0 || data->size == data->capacity)
 		return (0);
-	op_push(data_b, data);
+	op_push(data_b, data, count_ops);
 	ft_printf("pa\n");
+	count_ops->pa_count++;
 	return (1);
 }
 
-int	pb(t_array *data, t_array *data_b)
+int	pb(t_array *data, t_array *data_b, t_count *count_ops)
 {
 	if (data->size == 0 || data_b->size == data_b->capacity)
 		return (0);
-	op_push(data, data_b);
+	op_push(data, data_b, count_ops);
 	ft_printf("pb\n");
+	count_ops->pb_count++;
 	return (1);
 }
 
-static void	op_push(t_array *src, t_array *dest)
+static void	op_push(t_array *src, t_array *dest, t_count *count_ops)
 {
 	dest->size++;
 	dest->head = (dest->head - 1 + dest->capacity) % dest->capacity;
@@ -42,7 +44,7 @@ static void	op_push(t_array *src, t_array *dest)
 }
 // 38. To open a new first position in dest by moving dest->head backwards
 // 41. And remove the pushed value from src by moving src->head forwards
-/* 
+/*
 void print_stack(char *name, t_array *s)
 {
     printf("%s: ", name);
@@ -58,7 +60,7 @@ int main(void)
 {
     t_array data;
     t_array data_b;
-    
+
     data.capacity = 5;
     data.values = malloc(sizeof(int) * data.capacity);
     data.values[0] = 1; data.values[1] = 2;

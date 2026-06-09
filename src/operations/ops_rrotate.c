@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rrotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 11:06:10 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/05/28 17:23:41 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/09 16:50:58 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 
 static void	op_rrotate(t_array *data);
 
-int	rra(t_array *data)
+int	rra(t_array *data, t_count *count_ops)
 {
 	op_rrotate(data);
 	ft_printf("rra\n");
+	count_ops->rra_count++;
 	return (1);
 }
 
-int	rrb(t_array *data_b)
+int	rrb(t_array *data_b, t_count *count_ops)
 {
 	op_rrotate(data_b);
 	ft_printf("rrb\n");
+	count_ops->rrb_count++;
 	return (1);
 }
 
-int	rrr(t_array *data, t_array *data_b)
+int	rrr(t_array *data, t_array *data_b, t_count *count_ops)
 {
 	op_rrotate(data);
 	op_rrotate(data_b);
 	ft_printf("rrr\n");
+	count_ops->rrr_count++;
 	return (1);
 }
 
@@ -51,7 +54,7 @@ static void	op_rrotate(t_array *data)
 }
 // 45. To find and save the stack last value before moving the head backwards
 // 50. And save that previous last value (tmp) as now the first value
-/* 
+/*
 void	print_stack(char *name, t_array *s)
 {
     printf("%s: ", name);
@@ -66,7 +69,7 @@ void	print_stack(char *name, t_array *s)
 int main(void)
 {
     t_array data;
-    
+
     data.capacity = 5;
     data.values = malloc(sizeof(int) * data.capacity);
     data.values[0] = 1; data.values[1] = 2;

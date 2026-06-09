@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_complex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 10:41:06 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/08 14:27:08 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 16:45:07 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	indexation(t_array *src, int *sorted_copy);
 static int	get_max_bits(t_array *src);
 
-int	strategy_complex(t_array *data, t_array *data_b)
+int	strategy_complex(t_array *data, t_array *data_b, t_count *count_ops)
 {
 	int	*sorted;
 	int	iterations;
@@ -34,12 +34,12 @@ int	strategy_complex(t_array *data, t_array *data_b)
 		while (j++ < data->capacity)
 		{
 			if (((data->values[data->head] >> i) & 1) == 0)
-				counter += pb(data, data_b);
+				counter += pb(data, data_b, count_ops);
 			else
-				counter += ra(data);
+				counter += ra(data, count_ops);
 		}
 		while (data_b->size > 0)
-			counter += pa(data_b, data);
+			counter += pa(data_b, data, count_ops);
 	}
 	return (free (sorted), counter);
 }
@@ -111,7 +111,7 @@ void	print_stack(char *name, t_array *s)
 
 int main(void)
 {
-	// SMALL STACK 2 NUMBERS 
+	// SMALL STACK 2 NUMBERS
 	// t_array data;
 	// int	number[] = {8, 2};
 	// data.values = number;
@@ -119,7 +119,7 @@ int main(void)
 	// data.capacity = 2;
 	// data.head = 0;
 
-	// SMALL STACK 3 NUMBERS 
+	// SMALL STACK 3 NUMBERS
 	// t_array data;
 	// int	number[] = {8, 2, 9};
 	// data.values = number;
@@ -127,7 +127,7 @@ int main(void)
 	// data.capacity = 3;
 	// data.head = 0;
 
-	// SMALL STACK 4 NUMBERS 
+	// SMALL STACK 4 NUMBERS
 	// t_array data;
 	// int	number[] = {2, 4, 6, 1};
 	// data.values = number;
@@ -135,7 +135,7 @@ int main(void)
 	// data.capacity = 4;
 	// data.head = 0;
 
-	// SMALL STACK 5 NUMBERS 
+	// SMALL STACK 5 NUMBERS
 	// t_array data;
 	// int	number[] = {2, 8, 1, 4, 9};
 	// data.values = number;
@@ -143,7 +143,7 @@ int main(void)
 	// data.capacity = 6;
 	// data.head = 0;
 
-	// REGULAR STACK 
+	// REGULAR STACK
 	// t_array data;
 	// int	number[] = {2, 8, 1, 4, 9, 332,   -2, 0, 58, 22, 32,  +69,  21497};
 	// data.values = number;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/05/27 19:24:40 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/09 16:50:21 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 
 static void	op_rotate(t_array *data);
 
-int	ra(t_array *data)
+int	ra(t_array *data, t_count *count_ops)
 {
 	op_rotate(data);
 	ft_printf("ra\n");
+	count_ops->ra_count++;
 	return (1);
 }
 
-int	rb(t_array *data_b)
+int	rb(t_array *data_b, t_count *count_ops)
 {
 	op_rotate(data_b);
 	ft_printf("rb\n");
+	count_ops->rb_count++;
 	return (1);
 }
 
-int	rr(t_array *data, t_array *data_b)
+int	rr(t_array *data, t_array *data_b, t_count *count_ops)
 {
 	op_rotate(data);
 	op_rotate(data_b);
 	ft_printf("rr\n");
+	count_ops->rr_count++;
 	return (1);
 }
 
@@ -48,7 +51,7 @@ static void	op_rotate(t_array *data)
 }
 // 47. To find the stack last position after increasing the size->head
 // 47. And save the previous first value (tmp) as now the last value
-/* 
+/*
 void	print_stack(char *name, t_array *s)
 {
     printf("%s: ", name);
@@ -63,7 +66,7 @@ void	print_stack(char *name, t_array *s)
 int main(void)
 {
     t_array data;
-    
+
     data.capacity = 5;
     data.values = malloc(sizeof(int) * data.capacity);
     data.values[0] = 1; data.values[1] = 2;

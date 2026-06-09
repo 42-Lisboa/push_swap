@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:54:11 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/03 16:27:08 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/09 16:33:27 by jastolfi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	parse_all_flags(int argc, char **argv, t_flags *flag)
 			end(ERR_INVALID_FLAG);
 		i++;
 	}
+	if (i == argc)
+		end(ERR_ARG);
 	if (flag->strategy == -1)
 		flag->strategy = 3;
 	return (i);
