@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/10 20:43:38 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/10 22:41:43 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 		end(ERR_MALLOC);
 	count_op_to_zero(count_op);
 	disorder = compute_disorder(data);
+	count_op->bench = flags.bench;
 	count_op->total_count = dispatcher(flags, data, count_op);
 	if (flags.bench)
 		display_bench(flags, count_op, disorder);

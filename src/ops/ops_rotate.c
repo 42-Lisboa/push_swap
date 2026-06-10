@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/10 22:42:37 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	op_rotate(t_array *data);
 int	ra(t_array *data, t_ops *count_op)
 {
 	op_rotate(data);
-	ft_printf("ra\n");
+	if (!count_op->bench)
+        ft_printf("ra\n");
 	count_op->ra++;
 	return (1);
 }
@@ -25,7 +26,8 @@ int	ra(t_array *data, t_ops *count_op)
 int	rb(t_array *data_b, t_ops *count_op)
 {
 	op_rotate(data_b);
-	ft_printf("rb\n");
+    if (!count_op->bench)
+    	ft_printf("rb\n");
 	count_op->rb++;
 	return (1);
 }
@@ -34,7 +36,8 @@ int	rr(t_array *data, t_array *data_b, t_ops *count_op)
 {
 	op_rotate(data);
 	op_rotate(data_b);
-	ft_printf("rr\n");
+    if (!count_op->bench)
+	    ft_printf("rr\n");
 	count_op->rr++;
 	return (1);
 }

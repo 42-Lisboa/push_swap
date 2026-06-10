@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:52 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/10 20:41:31 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/10 22:38:30 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_ops
 	int	rrb;
 	int	rrr;
 	int	total_count;
+	int bench;
 }	t_ops;
 
 typedef int	(*t_sort_fn)(t_array *data, t_array *data_b, t_ops *count_op);

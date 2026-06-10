@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/10 20:40:31 by jcas1808         ###   ########.fr       */
+/*   Updated: 2026/06/10 22:43:09 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	sa(t_array *data, t_ops *count_op)
 	if (data->size <= 1)
 		return (0);
 	op_swap(data);
-	ft_printf("sa\n");
+	if (!count_op->bench)
+		ft_printf("sa\n");
 	count_op->sa++;
 	return (1);
 }
@@ -29,7 +30,8 @@ int	sb(t_array *data_b, t_ops *count_op)
 	if (data_b->size <= 1)
 		return (0);
 	op_swap(data_b);
-	ft_printf("sb\n");
+	if (!count_op->bench)
+		ft_printf("sb\n");
 	count_op->sb++;
 	return (1);
 }
@@ -42,7 +44,8 @@ int	ss(t_array *data, t_array *data_b, t_ops *count_op)
 		op_swap(data);
 	if (data_b->size > 1)
 		op_swap(data_b);
-	ft_printf("ss\n");
+	if (!count_op->bench)
+		ft_printf("ss\n");
 	count_op->ss++;
 	return (1);
 }
