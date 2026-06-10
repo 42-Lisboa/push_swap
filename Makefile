@@ -1,12 +1,10 @@
 
-SRC = \
-$(DIR_SRC)/push_swap.c \
-$(DIR_SRC_OPS)/ops_push.c $(DIR_SRC_OPS)/ops_rotate.c $(DIR_SRC_OPS)/ops_rrotate.c $(DIR_SRC_OPS)/ops_swap.c \
-$(DIR_SRC_PARSE)/parse_args.c $(DIR_SRC_PARSE)/parse_flags.c $(DIR_SRC_PARSE)/end.c \
-$(DIR_SRC_STRAT)/strategy_simple.c $(DIR_SRC_STRAT)/strategy_medium.c $(DIR_SRC_STRAT)/strategy_complex.c \
-$(DIR_SRC_STRAT)/strategy_adaptive.c $(DIR_SRC_STRAT)/strategy_small_stack.c $(DIR_SRC_STRAT)/strategy_utils.c \
+DIR_INCLUDE = include
+DIR_SRC = src
+DIR_SRC_OPS = $(DIR_SRC)/ops
+DIR_SRC_PARSE = $(DIR_SRC)/parse
+DIR_SRC_STRAT = $(DIR_SRC)/strategy
 
-OBJS = $(SRC:.c=.o)
 NAME = push_swap.a
 PROGRAM = $(NAME:.a=)
 LIB_AUX = libft
@@ -14,11 +12,14 @@ FLAGS = -Wall -Werror -Wextra -g
 HEADER1 = $(DIR_INCLUDE)/push_swap.h
 HEADER2 = $(DIR_INCLUDE)/utils.h
 
-DIR_INCLUDE = include
-DIR_SRC = src
-DIR_SRC_OPS = $(DIR_SRC)/ops
-DIR_SRC_PARSE = $(DIR_SRC)/parse
-DIR_SRC_STRAT = $(DIR_SRC)/strategy
+SRC = \
+$(DIR_SRC)/push_swap.c \
+$(DIR_SRC_OPS)/ops_push.c $(DIR_SRC_OPS)/ops_rotate.c $(DIR_SRC_OPS)/ops_rrotate.c $(DIR_SRC_OPS)/ops_swap.c \
+$(DIR_SRC_PARSE)/parse_args.c $(DIR_SRC_PARSE)/parse_flags.c $(DIR_SRC_PARSE)/end.c \
+$(DIR_SRC_STRAT)/strategy_simple.c $(DIR_SRC_STRAT)/strategy_medium.c $(DIR_SRC_STRAT)/strategy_complex.c \
+$(DIR_SRC_STRAT)/strategy_adaptive.c $(DIR_SRC_STRAT)/strategy_small_stack.c $(DIR_SRC_STRAT)/strategy_utils.c
+
+OBJS = $(SRC:.c=.o)
 
 
 all: $(NAME)
