@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:40:31 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	sa(t_array *data, t_ops *count_op)
 
 int	sb(t_array *data_b, t_ops *count_op)
 {
-	int	tmp;
-
 	if (data_b->size <= 1)
 		return (0);
 	op_swap(data_b);
@@ -38,8 +36,6 @@ int	sb(t_array *data_b, t_ops *count_op)
 
 int	ss(t_array *data, t_array *data_b, t_ops *count_op)
 {
-	int	tmp;
-
 	if (data->size <= 1 && data_b->size <= 1)
 		return (0);
 	if (data->size > 1)

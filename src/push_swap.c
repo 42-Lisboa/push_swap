@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/09 21:28:08 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:43:38 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	int		start;
 	float	disorder;
 
-	is_valid_argc(argc, argv);
+	is_valid_argc(argc);
 	start = parse_all_flags(argc, argv, &flags);
 	data = validate_number(argc, argv, start);
 	has_duplicates(data);
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	disorder = compute_disorder(data);
 	count_op->total_count = dispatcher(flags, data, count_op);
 	if (flags.bench)
-		display_bench(flags, data, count_op, disorder);
+		display_bench(flags, count_op, disorder);
 	return (0);
 }
 // 00. Validar se há argumentos suficientes
@@ -61,7 +61,7 @@ int	dispatcher(t_flags flags, t_array *data, t_ops *count_op)
 	return (fns[flags.strategy](data, data_b, count_op));
 }
 
-void	display_bench(t_flags flags, t_array *data, t_ops *count, float dis)
+void	display_bench(t_flags flags, t_ops *count, float dis)
 {
 	char	*flags_titles[4];
 
@@ -111,7 +111,6 @@ void	print_stack(char *name, t_array *s)
 		ft_printf("%d ", s->values[idx]);
 	}
 	ft_printf("\n");
-}
+} */
 // print_stack("STACK A: ", data); // Insert on main
-// cc push_swap.c ops/*.c parse/*.c strategy/*.c ../libft/libft.a -o programa
-// ./programa --bench 1 2 3 5 4 */
+// ./programa --bench 1 2 3 5 4

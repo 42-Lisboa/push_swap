@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:38 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/09 20:46:32 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:35:30 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int		strategy_medium(t_array *data, t_array *data_b, t_ops *count_op);
 int		strategy_complex(t_array *data, t_array *data_b, t_ops *count_op);
 int		strategy_adaptive(t_array *data, t_array *data_b, t_ops *count_op);
 
-void	display_bench(t_flags flags, t_array *data, t_ops *count_op, float dis);
+void	display_bench(t_flags flags, t_ops *count_op, float dis);
 
 #endif

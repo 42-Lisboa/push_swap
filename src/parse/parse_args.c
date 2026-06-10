@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/09 16:36:16 by jastolfi         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:47:23 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	is_valid_argc(int argc, char **argv)
+void	is_valid_argc(int argc)
 {
 	if (argc == 1)
 		exit(0);
@@ -49,8 +49,8 @@ static void	fill_data(t_array *data, int argc, char **argv, int start)
 	while (start < argc)
 	{
 		if ((!(ft_isdigit(argv[start][0])
-				|| argv[start][0] == '-' && ft_isdigit(argv[start][1])
-				|| argv[start][0] == '+' && ft_isdigit(argv[start][1]))))
+				|| (argv[start][0] == '-' && ft_isdigit(argv[start][1]))
+				|| (argv[start][0] == '+' && ft_isdigit(argv[start][1])))))
 		{
 			free(data->values);
 			free(data);

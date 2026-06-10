@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:52 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/09 20:47:40 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/10 20:41:31 by jcas1808         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_ops
 
 typedef int	(*t_sort_fn)(t_array *data, t_array *data_b, t_ops *count_op);
 
-void	is_valid_argc(int argc, char **argv);
+void	is_valid_argc(int argc);
 t_array	*validate_number(int argc, char **argv, int start);
 void	has_duplicates(t_array *data);
 int		parse_all_flags(int argc, char **argv, t_flags *flag);
