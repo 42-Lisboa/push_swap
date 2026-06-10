@@ -64,9 +64,14 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🟣 Finished benchmark main implemetation
 - [x] 🟢 Fixed norminette in all of the files, also replaced some variables names
 - [ ] ⚫ Change ops logic to hide functions when bench is off
-- [ ] ⚫ Create Makefile
+
+**Phase 8: Project Finalization**
+- [x] 🟢 Implement makefile using also makefile from auxiliar libft library
+- [x] 🟢 Removed unused variables
 - [ ] ⚫ Test final program on project official testers
 - [ ] ⚫ Check all files: names, comments and norminette
+
+ , 
 
 ---
 ### 👨‍💻 Authors & Contributions
