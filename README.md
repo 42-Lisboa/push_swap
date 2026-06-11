@@ -1,8 +1,197 @@
-# push_swap 🔄
+*This project has been created as part of the 42 curriculum by jalves, jastolfi.*
 
-> **🚧 Work In Progress 🚧**
+# push_swap
 
-A 42 school algorithmic project focused on sorting data on a stack with a limited set of instructions, using the absolute minimum number of moves.
+## Description
+
+**push_swap** is a sorting algorithm project from the 42 curriculum. The goal is to sort a list of integers stored in **Stack A** using a limited set of stack operations and the fewest moves possible. A second auxiliary stack (**Stack B**) is available as temporary storage.
+
+The project enforces a deep understanding of algorithmic complexity by requiring the implementation of **four distinct sorting strategies**, each targeting a specific complexity class. The program selects the most appropriate strategy at runtime — either automatically based on a disorder metric or manually via a flag.
+
+---
+
+## Instructions
+
+### Compilation
+
+```bash
+make        # build push_swap
+make re     # clean rebuild
+make clean  # remove object files
+make fclean # remove objects and binary
+```
+
+### Execution
+
+```bash
+./push_swap [--simple | --medium | --complex | --adaptive] <integers>
+```
+
+| Flag | Strategy | Complexity |
+|------|----------|------------|
+| `--simple` | Selection Sort adaptation | O(n²) |
+| `--medium` | Bucket/Chunk Sort adaptation | O(n√n) |
+| `--complex` | Radix Sort — LSD bitwise | O(n log n) |
+| `--adaptive` | Disorder-based auto-selection | varies |
+
+> If no flag is given, `--adaptive` is used by default.
+
+### Optional Benchmark Mode
+
+Append `--bench` to display performance metrics on `stderr` after sorting:
+
+```bash
+./push_swap --bench --adaptive 4 67 3 87 23
+```
+
+Output includes:
+- Computed disorder (% with 2 decimals)
+- Strategy name and complexity class
+- Total number of operations
+- Count per operation type (`sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`)
+
+### Usage Examples
+
+```bash
+# Sort 3 numbers using simple strategy
+./push_swap --simple 3 1 2
+
+# Count operations for 5 random numbers
+ARG="4 67 3 87 23"; ./push_swap --adaptive $ARG | wc -l
+
+# Verify correctness with checker
+ARG="4 67 3 87 23"; ./push_swap --complex $ARG | ./checker_linux $ARG
+
+# Benchmark with 500 random numbers
+shuf -i 0-9999 -n 500 > args.txt && ./push_swap --bench $(cat args.txt) 2> bench.txt | wc -l
+```
+
+### Error Handling
+
+The program prints `Error` to `stderr` and exits in the following cases:
+- Non-integer arguments
+- Values outside the `int` range
+- Duplicate values
+- Invalid flags
+
+```bash
+./push_swap --adaptive 0 one 2 3   # Error
+./push_swap --simple 3 2 3         # Error (duplicate)
+```
+
+---
+
+## Algorithms
+
+### Disorder Metric
+
+Before selecting a strategy, the adaptive mode measures how disordered the stack is using an **inversion count ratio**:
+
+```
+disorder = number of inverted pairs / total pairs
+```
+
+- `0.0` → perfectly sorted
+- `1.0` → fully reversed
+
+```c
+for i from 0 to size-1:
+    for j from i+1 to size-1:
+        if a[i] > a[j]:
+            mistakes++
+        total_pairs++
+return mistakes / total_pairs
+```
+
+---
+
+### Simple — Selection Sort O(n²)
+
+**Used when:** `disorder < 0.2` (adaptive) or `--simple` flag.
+
+Repeatedly finds the minimum element in Stack A, rotates it to the top (choosing the shortest rotation direction), and pushes it to Stack B. Once Stack A is empty, all elements are pushed back from B to A in ascending order.
+
+**Complexity:**
+- Time: O(n²) — for each of the n elements, up to n/2 rotations are needed
+- Space: O(n) — one auxiliary stack
+
+---
+
+### Medium — Bucket Sort O(n√n)
+
+**Used when:** `0.2 ≤ disorder < 0.5` (adaptive) or `--medium` flag.
+
+Divides the sorted value range into **√n buckets**. For each bucket, elements falling within the bucket's `[min, max]` range are rotated to the top of Stack A (using shortest path) and pushed to Stack B. After all buckets are processed, Stack B is sorted in descending order by pulling the largest element to the top each time and pushing it back to Stack A.
+
+**Complexity:**
+- Time: O(n√n) — √n passes over n elements each
+- Space: O(n) — one auxiliary stack
+
+---
+
+### Complex — Radix Sort LSD O(n log n)
+
+**Used when:** `disorder ≥ 0.5` (adaptive) or `--complex` flag.
+
+Applies **indexation** first — each value is replaced by its rank index in the sorted order (0 to n-1). Then a **Least Significant Bit (LSD) Radix Sort** is performed:
+
+- For each bit from least to most significant (log₂(n) passes total):
+  - If the current top element's bit is `0` → push to Stack B
+  - If the bit is `1` → rotate to the back of Stack A
+  - After processing all n elements, pull everything back from B to A
+
+Each pass costs O(n) operations. With log₂(n) passes, total cost is O(n log n).
+
+**Complexity:**
+- Time: O(n log n) — log₂(n) passes × n operations each
+- Space: O(n) — one auxiliary stack
+
+---
+
+### Adaptive — Disorder-Based Auto-Selection
+
+Measures disorder before any moves, then delegates to the appropriate strategy:
+
+| Disorder | Strategy used | Complexity |
+|----------|---------------|------------|
+| `< 0.2` | Simple (Selection Sort) | O(n²) |
+| `0.2 – 0.5` | Medium (Bucket Sort) | O(n√n) |
+| `≥ 0.5` | Complex (Radix LSD) | O(n log n) |
+
+Stacks with 5 or fewer elements are always handled by a dedicated hardcoded small-stack sorter, bypassing disorder measurement entirely.
+
+**Threshold justification:** The thresholds 0.2 and 0.5 were chosen empirically. At low disorder, simple in-place rotations are cheap and avoid the overhead of chunking or indexation. At medium disorder, bucket partitioning amortizes rotation costs across √n groups. At high disorder, the input is chaotic enough that the consistent O(n log n) cost of Radix sort outperforms both alternatives.
+
+---
+
+## Performance Targets
+
+| Input size | Pass (min) | Good | Excellent |
+|------------|-----------|------|-----------|
+| 100 numbers | < 2000 ops | < 1500 ops | < 700 ops |
+| 500 numbers | < 12000 ops | < 8000 ops | < 5500 ops |
+
+---
+
+## Resources
+
+### Sorting Algorithms
+- [Visualgo — Sorting Visualizations](https://visualgo.net/en/sorting)
+- [Radix Sort — Wikipedia](https://en.wikipedia.org/wiki/Radix_sort)
+- [Big-O Cheat Sheet](https://www.bigocheatsheet.com/)
+- [Grokking Algorithms](https://www.amazon.es/-/en/Grokking-Algorithms-Aditya-Bhargava/dp/1633438538)
+- [CS50 — Algorithms Lecture](https://cs50.harvard.edu/x/2025/weeks/3/)
+
+### AI Usage
+
+AI was used throughout this project for the following tasks:
+- **Code comments:** generating inline documentation for strategy functions following a consistent format
+- **Algorithm explanations:** clarifying the mechanics of LSD Radix sort and its adaptation to the stack model
+- **README drafting:** structuring and writing sections of this document based on the project PDF requirements
+
+All AI-generated content was reviewed, tested, and validated by both team members before being included in the project.
+
+---
 
 ## Current Status
 - [x] Input parsing and error validation, also for flags
@@ -71,14 +260,16 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🟢 Removed unused variables
 - [x] 🔵 Checked and corrected norminette on all files
 - [x] 🔵 Fixed bug when calculating the disorder and small tweaks to increase performance
+- [x] 🔵 README creation with strategies description and logic behind the project.
 - [ ] ⚫ Test final program on project official testers
 - [ ] ⚫ Check all files: names, comments and norminette
 
+## Authors & Contributions
 
----
-### 👨‍💻 Authors & Contributions
-🟢 **Jonathan Alves** (`jalves`)
-🔵 **João Astolfi** (`jpastolfi`)
-🟣 **Pair Programming / Both**
+| | Login | Role |
+|--|-------|------|
+| 🟢 | **jalves** | Jonathan Alves |
+| 🔵 | **jpastolfi** | João Astolfi |
+| 🟣 | Both | Pair programming sessions |
 
 *Programming Students @ 42*
