@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 14:54:52 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/10 22:38:30 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/11 11:41:23 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_array
 typedef struct s_flags
 {
 	int	strategy;
-	int	bench;
 }	t_flags;
 
 typedef struct s_ops
@@ -47,7 +46,7 @@ typedef struct s_ops
 	int	rrb;
 	int	rrr;
 	int	total_count;
-	int bench;
+	int	bench;
 }	t_ops;
 
 typedef int	(*t_sort_fn)(t_array *data, t_array *data_b, t_ops *count_op);
@@ -55,7 +54,7 @@ typedef int	(*t_sort_fn)(t_array *data, t_array *data_b, t_ops *count_op);
 void	is_valid_argc(int argc);
 t_array	*validate_number(int argc, char **argv, int start);
 void	has_duplicates(t_array *data);
-int		parse_all_flags(int argc, char **argv, t_flags *flag);
+int		parse_all_flags(int argc, char **argv, t_flags *flag, t_ops *count_op);
 int		get_strategy_idx(char *argv);
 void	end(int error);
 int		dispatcher(t_flags flags, t_array *structure, t_ops *count_op);

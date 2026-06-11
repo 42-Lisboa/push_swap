@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/10 22:42:22 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/11 11:43:18 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	pa(t_array *data_b, t_array *data, t_ops *count_op)
 	if (data_b->size == 0 || data->size == data->capacity)
 		return (0);
 	op_push(data_b, data);
-    if (!count_op->bench)
-    	ft_printf("pa\n");
+	if (!count_op->bench)
+		ft_printf("pa\n");
 	count_op->pa++;
 	return (1);
 }
@@ -30,8 +30,8 @@ int	pb(t_array *data, t_array *data_b, t_ops *count_op)
 	if (data->size == 0 || data_b->size == data_b->capacity)
 		return (0);
 	op_push(data, data_b);
-    if (!count_op->bench)
-	    ft_printf("pb\n");
+	if (!count_op->bench)
+		ft_printf("pb\n");
 	count_op->pb++;
 	return (1);
 }
@@ -49,7 +49,7 @@ static void	op_push(t_array *src, t_array *dest)
 /*
 void print_stack(char *name, t_array *s)
 {
-    printf("%s: ", name);
+	printf("%s: ", name);
     for (int i = 0; i < s->size; i++)
     {
         int idx = (s->head + i) % s->capacity;

@@ -14,8 +14,8 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] Move reduction and efficiency tweaking (Targeting < 5500 moves for 500)
 - [x] Radix Sort implementation (Bitwise) for ultimate efficiency on 500 numbers
 - [x] Implement adaptive strategy based on the stack disorder index
-- [ ] Create and implement logic for bench flag
-- [ ] Implement new Makefile
+- [x] Create and implement logic for bench flag
+- [x] Implement new Makefile
 - [ ] Check all files
 
 ## Development History & Last Changes
@@ -63,11 +63,13 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🟣 Implemented new function on libft to print also float numbers
 - [x] 🟣 Finished benchmark main implemetation
 - [x] 🟢 Fixed norminette in all of the files, also replaced some variables names
-- [ ] ⚫ Change ops logic to hide functions when bench is off
+- [x] 🔵 Change ops logic to hide functions when bench is off
+- [x] 🔵 Removed redundant bench flag 
 
 **Phase 8: Project Finalization**
 - [x] 🟢 Implement makefile using also makefile from auxiliar libft library
 - [x] 🟢 Removed unused variables
+- [x] 🔵 Checked and corrected norminette on all files
 - [ ] ⚫ Test final program on project official testers
 - [ ] ⚫ Check all files: names, comments and norminette
 

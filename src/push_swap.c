@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/10 22:41:43 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/11 10:55:23 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,17 @@ int	main(int argc, char **argv)
 	int		start;
 	float	disorder;
 
-	is_valid_argc(argc);
-	start = parse_all_flags(argc, argv, &flags);
-	data = validate_number(argc, argv, start);
-	has_duplicates(data);
 	count_op = malloc(sizeof(t_ops));
 	if (!count_op)
 		end(ERR_MALLOC);
 	count_op_to_zero(count_op);
+	is_valid_argc(argc);
+	start = parse_all_flags(argc, argv, &flags, count_op);
+	data = validate_number(argc, argv, start);
+	has_duplicates(data);
 	disorder = compute_disorder(data);
-	count_op->bench = flags.bench;
 	count_op->total_count = dispatcher(flags, data, count_op);
-	if (flags.bench)
+	if (count_op->bench)
 		display_bench(flags, count_op, disorder);
 	return (0);
 }

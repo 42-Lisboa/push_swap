@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jastolfi <jastolfi@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 18:54:11 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/09 16:33:27 by jastolfi         ###   ########.fr       */
+/*   Updated: 2026/06/11 11:41:40 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	parse_all_flags(int argc, char **argv, t_flags *flag)
+int	parse_all_flags(int argc, char **argv, t_flags *flag, t_ops *count_op)
 {
 	int	i;
 	int	tmp;
 
 	i = 1;
 	flag->strategy = -1;
-	flag->bench = 0;
+	count_op->bench = 0;
 	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
 	{
 		tmp = get_strategy_idx(&argv[i][2]);
 		if (tmp != -1 && flag->strategy == -1)
 			flag->strategy = tmp;
-		else if (ft_strncmp(&argv[i][2], "bench", 6) == 0 && flag->bench == 0)
-			flag->bench = 1;
+		else if (ft_strncmp(&argv[i][2], "bench", 6) == 0
+			&& count_op->bench == 0)
+			count_op->bench = 1;
 		else
 			end(ERR_INVALID_FLAG);
 		i++;

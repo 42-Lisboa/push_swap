@@ -6,7 +6,7 @@
 /*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/10 22:42:37 by jpastolfi        ###   ########.fr       */
+/*   Updated: 2026/06/11 11:42:43 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ra(t_array *data, t_ops *count_op)
 {
 	op_rotate(data);
 	if (!count_op->bench)
-        ft_printf("ra\n");
+		ft_printf("ra\n");
 	count_op->ra++;
 	return (1);
 }
@@ -26,8 +26,8 @@ int	ra(t_array *data, t_ops *count_op)
 int	rb(t_array *data_b, t_ops *count_op)
 {
 	op_rotate(data_b);
-    if (!count_op->bench)
-    	ft_printf("rb\n");
+	if (!count_op->bench)
+		ft_printf("rb\n");
 	count_op->rb++;
 	return (1);
 }
@@ -36,8 +36,8 @@ int	rr(t_array *data, t_array *data_b, t_ops *count_op)
 {
 	op_rotate(data);
 	op_rotate(data_b);
-    if (!count_op->bench)
-	    ft_printf("rr\n");
+	if (!count_op->bench)
+		ft_printf("rr\n");
 	count_op->rr++;
 	return (1);
 }
@@ -57,7 +57,7 @@ static void	op_rotate(t_array *data)
 /*
 void	print_stack(char *name, t_array *s)
 {
-    printf("%s: ", name);
+	printf("%s: ", name);
     for (int i = 0; i < s->size; i++)
     {
         int idx = (s->head + i) % s->capacity;
