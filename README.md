@@ -70,10 +70,10 @@ A 42 school algorithmic project focused on sorting data on a stack with a limite
 - [x] 🟢 Implement makefile using also makefile from auxiliar libft library
 - [x] 🟢 Removed unused variables
 - [x] 🔵 Checked and corrected norminette on all files
+- [x] 🔵 Fixed bug when calculating the disorder and small tweaks to increase performance
 - [ ] ⚫ Test final program on project official testers
 - [ ] ⚫ Check all files: names, comments and norminette
 
- , 
 
 ---
 ### 👨‍💻 Authors & Contributions

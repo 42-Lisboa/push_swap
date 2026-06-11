@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_adaptive.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:59:25 by jcas1808          #+#    #+#             */
-/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/11 17:26:27 by jpastolfi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	strategy_adaptive(t_array *data, t_array *data_b, t_ops *count_op)
 		return (swap_small_stack(data, data_b, count_op));
 	if (disorder < 0.2)
 		return (strategy_simple(data, data_b, count_op));
-	else if (disorder >= 0.2 && disorder < 0.5)
+	else if (disorder < 0.5)
 		return (strategy_medium(data, data_b, count_op));
-	else if (disorder >= 0.5)
+	else
 		return (strategy_complex(data, data_b, count_op));
 	return (0);
 }
@@ -49,7 +49,8 @@ float	compute_disorder(t_array *data)
 		while (j < data->size)
 		{
 			total_pairs++;
-			if (data->values[i] > data->values[j])
+			if (data->values[(data->head + i) % data->capacity]
+				> data->values[(data->head + j) % data->capacity])
 				mistakes += 1;
 			j++;
 		}
@@ -57,6 +58,7 @@ float	compute_disorder(t_array *data)
 	}
 	return (mistakes / total_pairs);
 }
-// 53. Count every pair of elements in the stack as a candidate comparison;
-// 55. Increment mistakes whenever an element is greater than a later one;
-// 60. Return the ratio of inverted pairs over total pairs as a disorder score;
+// 51. Count every pair of elements in the stack as a candidate comparison;
+// 52/53. Use circular buffer arithmetic to compare physical memory correctly;
+// 54. Increment mistakes if an element is logically greater than a later one;
+// 59. Return the ratio of inverted pairs over total pairs as a disorder score;
