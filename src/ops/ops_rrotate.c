@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rrotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/28 11:06:10 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/10 22:42:55 by jpastolfi        ###   ########.fr       */
+/*   Created: 2026/05/28 11:06:10 by jastolfi          #+#    #+#             */
+/*   Updated: 2026/06/12 12:04:11 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by jalves, jastolfi.*
+*This project has been created as part of the 42 curriculum by jcosta-a, jastolfi.*
 
 # push_swap
 
@@ -30,7 +30,7 @@ make fclean # remove objects and binary
 | Flag | Strategy | Complexity |
 |------|----------|------------|
 | `--simple` | Selection Sort adaptation | O(n²) |
-| `--medium` | Bucket/Chunk Sort adaptation | O(n√n) |
+| `--medium` | Bucket Sort adaptation | O(n√n) |
 | `--complex` | Radix Sort — LSD bitwise | O(n log n) |
 | `--adaptive` | Disorder-based auto-selection | varies |
 
@@ -269,7 +269,7 @@ All AI-generated content was reviewed, tested, and validated by both team member
 | | Login | Role |
 |--|-------|------|
 | 🟢 | **jalves** | Jonathan Alves |
-| 🔵 | **jpastolfi** | João Astolfi |
+| 🔵 | **jastolfi ** | João Astolfi |
 | 🟣 | Both | Pair programming sessions |
 
 *Programming Students @ 42*

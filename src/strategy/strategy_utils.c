@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpastolfi <jpastolfi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/02 10:52:22 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/08 13:46:36 by jpastolfi        ###   ########.fr       */
+/*   Created: 2026/06/02 10:52:22 by jastolfi          #+#    #+#             */
+/*   Updated: 2026/06/12 12:04:11 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

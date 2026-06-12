@@ -4,3 +4,5 @@ programa
 *.o
 *.a
 .vscode
+.gitignore
+checker_linux

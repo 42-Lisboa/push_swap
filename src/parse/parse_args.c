@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcas1808 <jcas1808@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/21 14:42:55 by jpastolfi         #+#    #+#             */
-/*   Updated: 2026/06/10 20:47:23 by jcas1808         ###   ########.fr       */
+/*   Created: 2026/05/21 14:42:55 by jastolfi          #+#    #+#             */
+/*   Updated: 2026/06/12 12:19:06 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	is_valid_argc(int argc)
 		exit(0);
 }
 // 17. Validation of the minimum number of argv;
-// 19. Validation of the minimum argv when there's a flag;
 
 static void	fill_data(t_array *data, int argc, char **argv, int i);
 
@@ -39,7 +38,7 @@ t_array	*validate_number(int argc, char **argv, int start)
 	data->head = 0;
 	return (data);
 }
-// 35. argc - i: we remove from the count - program and the flag
+// 31. argc - i: we remove from the count - program and the flag
 
 static void	fill_data(t_array *data, int argc, char **argv, int start)
 {
@@ -71,7 +70,7 @@ static void	fill_data(t_array *data, int argc, char **argv, int start)
 }
 // 56. First character of each argv cannot be different from sign or digit;
 // 57. If there is a sign, also 2nd character from argv needs to be digit;
-// 63. Validation if inside INT limits;
+// 59. Validation if inside INT limits;
 // 69. In an array of int on a struct we save the treated argv to values;
 
 void	has_duplicates(t_array *data)
