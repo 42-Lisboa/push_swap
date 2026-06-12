@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long	nb;
 	int		sign;
@@ -40,14 +40,13 @@ int	ft_atoi(const char *nptr)
 #include <stdio.h>
 int	main(void)
 {
-	printf("Test 1: %d\n", ft_atoi("42"));        // Expected: 42
-	printf("Test 2: %d\n", ft_atoi("-42"));       // Expected: -42
-	printf("Test 3: %d\n", ft_atoi("   +123"));   // Expected: 123
-	printf("Test 4: %d\n", ft_atoi("\t\n -56"));  // Expected: -56
-	printf("Test 5: %d\n", ft_atoi("123abc45"));  // Expected: 123
-	printf("Test 6: %d\n", ft_atoi("2147483647"));  // Expected: (INT_MAX)
-	printf("Test 7: %d\n", ft_atoi("-2147483648")); // Expected: (INT_MIN)
-	printf("Test 8: %d\n\n", ft_atoi("2147483648"));  // Expected: 0
-	printf("Test 9: %d\n\n", ft_atoi("99999999999999999"));  // Expected: 0
+	printf("Test 1: %d\n", ft_atol("42"));        // Expected: 42
+	printf("Test 2: %d\n", ft_atol("-42"));       // Expected: -42
+	printf("Test 3: %d\n", ft_atol("   +123"));   // Expected: 123
+	printf("Test 4: %d\n", ft_atol("\t\n -56"));  // Expected: -56
+	printf("Test 5: %d\n", ft_atol("123abc45"));  // Expected: 123
+	printf("Test 6: %d\n", ft_atol("2147483647"));  // Expected: (INT_MAX)
+	printf("Test 7: %d\n", ft_atol("-2147483648")); // Expected: (INT_MIN)
+	printf("Test 8: %d\n\n", ft_atol("2147483648"));  // Expected: 0
 	return (0);
 } */
