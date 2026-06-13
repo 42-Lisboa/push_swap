@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:41:25 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/12 12:23:05 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 18:05:16 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ static int	sort_five(t_array *data, t_array *data_b, t_ops *count_op)
 		counter += pb(data, data_b, count_op);
 	}
 	counter += sort_three(data, count_op);
-	counter += pa(data_b, data, count_op);
-	counter += pa(data_b, data, count_op);
+	while (data_b->size > 0)
+		counter += pa(data_b, data, count_op);
 	return (counter);
 }
 // 78. Until the stack A is not size three, we must find smallest numbers

@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/12 16:25:21 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:23:28 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	op_rotate(t_array *data);
 
 int	ra(t_array *data, t_ops *count_op)
 {
+	if (data->size <= 1)
+		return (0);
 	op_rotate(data);
 	ft_printf("ra\n");
 	count_op->ra++;
@@ -24,6 +26,8 @@ int	ra(t_array *data, t_ops *count_op)
 
 int	rb(t_array *data_b, t_ops *count_op)
 {
+	if (data_b->size <= 1)
+		return (0);
 	op_rotate(data_b);
 	ft_printf("rb\n");
 	count_op->rb++;
@@ -32,6 +36,8 @@ int	rb(t_array *data_b, t_ops *count_op)
 
 int	rr(t_array *data, t_array *data_b, t_ops *count_op)
 {
+	if (data->size <= 1 || data_b->size <= 1)
+		return (0);
 	op_rotate(data);
 	op_rotate(data_b);
 	ft_printf("rr\n");
@@ -43,8 +49,6 @@ static void	op_rotate(t_array *data)
 {
 	int	tmp;
 
-	if (data->size <= 1)
-		return ;
 	tmp = data->values[data->head];
 	data->head = (data->head + 1) % data->capacity;
 	data->values[((data->head + data->size -1) % data->capacity)] = tmp;

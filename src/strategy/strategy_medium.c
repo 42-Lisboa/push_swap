@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 21:14:12 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 18:12:00 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ int	strategy_medium(t_array *data, t_array *data_b, t_ops *c)
 		counter += send_to_bucket(data, data_b, bkt, c);
 		bucket_start = bucket_end + 1;
 		bucket_end = bucket_start + ft_sqrt(data->capacity) - 1;
-		if (bucket_end > data->size - 1)
-			bucket_end = bucket_start;
+		if (bucket_end > data->capacity - 1)
+			bucket_end = data->capacity - 1;
 	}
 	counter += sort_and_push_reverse(data_b, data, c);
-	while (data_b->size > 0)
-		counter += pa(data_b, data, c);
 	return (free(sorted), counter);
 }
 // 29. Calculate initial bucket size using the square root of the total size;

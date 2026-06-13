@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/05 14:59:25 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/12 12:23:16 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:51:56 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	strategy_adaptive(t_array *data, t_array *data_b, t_ops *count_op)
 {
 	float	disorder;
 
-	disorder = compute_disorder(data);
 	if (data->size <= 5)
 		return (swap_small_stack(data, data_b, count_op));
+	disorder = compute_disorder(data);
 	if (disorder < 0.2)
 		return (strategy_simple(data, data_b, count_op));
 	else if (disorder < 0.5)
@@ -40,6 +40,8 @@ float	compute_disorder(t_array *data)
 	int		i;
 	int		j;
 
+	if (data->size < 2)
+		return (0.0);
 	mistakes = 0;
 	total_pairs = 0;
 	i = 0;

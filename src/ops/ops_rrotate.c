@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/28 11:06:10 by jastolfi          #+#    #+#             */
-/*   Updated: 2026/06/12 16:25:43 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:29:51 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	op_rrotate(t_array *data);
 
 int	rra(t_array *data, t_ops *count_op)
 {
+	if (data->size <= 1)
+		return (0);
 	op_rrotate(data);
 	ft_printf("rra\n");
 	count_op->rra++;
@@ -24,6 +26,8 @@ int	rra(t_array *data, t_ops *count_op)
 
 int	rrb(t_array *data_b, t_ops *count_op)
 {
+	if (data_b->size <= 1)
+		return (0);
 	op_rrotate(data_b);
 	ft_printf("rrb\n");
 	count_op->rrb++;
@@ -32,6 +36,8 @@ int	rrb(t_array *data_b, t_ops *count_op)
 
 int	rrr(t_array *data, t_array *data_b, t_ops *count_op)
 {
+	if (data->size <= 1 || data_b->size <= 1)
+		return (0);
 	op_rrotate(data);
 	op_rrotate(data_b);
 	ft_printf("rrr\n");

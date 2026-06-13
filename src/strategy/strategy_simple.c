@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:41:17 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/09 20:44:14 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 18:02:34 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	strategy_simple(t_array *data, t_array *data_b, t_ops *count_op)
 	int	counter;
 
 	counter = 0;
-	while (data->size > 0)
+	while (data->size > 1)
 	{
 		moves = movements_to_smallest(data);
 		i = 0;

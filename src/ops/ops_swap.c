@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 16:06:43 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/12 16:25:59 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:19:02 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	sb(t_array *data_b, t_ops *count_op)
 
 int	ss(t_array *data, t_array *data_b, t_ops *count_op)
 {
-	if (data->size <= 1 && data_b->size <= 1)
+	if (data->size <= 1 || data_b->size <= 1)
 		return (0);
 	if (data->size > 1)
 		op_swap(data);

@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 17:10:09 by jcosta-a          #+#    #+#             */
-/*   Updated: 2026/06/12 18:26:03 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 16:59:22 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	display_bench(t_flags flags, t_ops *count, float dis)
 		ft_printf_fd(" / O(n log n)", 2);
 	ft_printf_fd("\n[bench] total_ops: %d\n", 2, count->total_count);
 	ft_printf_fd("[bench]	sa: %d	sb: %d", 2, count->sa, count->sb);
-	ft_printf_fd("	ss: %d	sb: %d", 2, count->ss, count->pa);
+	ft_printf_fd("	ss: %d	pa: %d", 2, count->ss, count->pa);
 	ft_printf_fd("	pb: %d\n", 2, count->pb);
 	ft_printf_fd("[bench]	ra: %d	rb: %d", 2, count->ra, count->rb);
 	ft_printf_fd("	rr: %d	rra: %d", 2, count->rr, count->rra);

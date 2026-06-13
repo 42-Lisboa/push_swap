@@ -6,7 +6,7 @@
 /*   By: jcosta-a <jcosta-a@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:42:55 by jastolfi          #+#    #+#             */
-/*   Updated: 2026/06/12 18:26:23 by jcosta-a         ###   ########.fr       */
+/*   Updated: 2026/06/13 17:42:33 by jcosta-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_array	*validate_number(int argc, char **argv, int start, t_ops *count_op)
 
 	data = malloc(sizeof(t_array));
 	if (!data)
-		return (NULL);
+		return (free(count_op), end(ERR_MALLOC), NULL);
 	data->values = malloc(sizeof(int) * (argc - start));
 	if (!data->values)
 	{
